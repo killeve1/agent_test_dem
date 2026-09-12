@@ -1,0 +1,21 @@
+{
+  "cash": 100000.0,
+  "position_contracts": 0,
+  "avg_entry_price": 0.0,
+  "avg_confidence": 0.0,
+  "margin_held": 0.0,
+  "realized_pnl": 0.0,
+  "trades": [
+    {
+      "timestamp": "2026-09-12T19:26:20.517841+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 100.05,
+      "confidence": null,
+      "reasoning": "No new oil-market headlines were found and there is currently no open position. Without fresh supply, demand, or geopolitical catalysts, confidence for opening a long is low; therefore we hold this cycle."
+    }
+  ],
+  "last_trade_at": null,
+  "day_start_date": "2026-09-12",
+  "day_start_equity": 100000.0
+}
