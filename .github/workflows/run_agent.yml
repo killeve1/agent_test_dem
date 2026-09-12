@@ -4,7 +4,7 @@ on:
   schedule:
     # Every 30 minutes. GitHub may delay this by a few minutes under load —
     # fine for a news-driven strategy, not for anything latency-sensitive.
-    - cron: "*/30 * * * *"
+    - cron: "*/10 * * * *"
   workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
 
 permissions:
