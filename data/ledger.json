@@ -93,6 +93,14 @@
       "price": 103.04,
       "confidence": null,
       "reasoning": "No new oil market headlines were retrieved and there is no existing position. Without a clear catalyst (e.g., OPEC+ decision, geopolitical supply shock, or surprise inventory change), confidence in entering a long trade is insufficient."
+    },
+    {
+      "timestamp": "2026-09-15T10:52:27.213156+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 103.26,
+      "confidence": null,
+      "reasoning": "No new oil market news or clear catalyst was provided, and there is currently no open position. Without a supply\u2011side event, inventory surprise, or geopolitical disruption, confidence in entering a long position is low (<0.65). Holding until a clear signal appears."
     }
   ],
   "last_trade_at": null,
