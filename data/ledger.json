@@ -125,6 +125,14 @@
       "price": 101.48,
       "confidence": null,
       "reasoning": "Latest headline reports Saudi Arabia rerouting crude via Oman, causing a price slide (WTI ~ $102, Brent $106). This supply\u2011logistics change is a bearish short\u2011term catalyst, reducing upside for a new long position. No strong supply\u2011tightening or demand\u2011surge news; price is already down. Confidence for opening a long is below 0.65, so we hold."
+    },
+    {
+      "timestamp": "2026-09-17T19:55:43.160565+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 100.3,
+      "confidence": null,
+      "reasoning": "Recent headlines are mixed: a US sanctions bill targeting Russia could restrict Russian oil supply (bullish), but Alberta's upcoming royalty incentives may boost Canadian oil production (bearish). No clear OPEC+ decision or major supply shock is present, and the signals are ambiguous, so confidence in a new long entry is below the 0.65 threshold."
     }
   ],
   "last_trade_at": null,
