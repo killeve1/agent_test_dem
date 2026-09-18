@@ -157,6 +157,14 @@
       "price": 95.58,
       "confidence": null,
       "reasoning": "Recent headlines show Saudi Arabia shifting exports to the Gulf, which pushed Brent below $105 and coincides with a WTI price of $95.6. While the cut to European term buyers could tighten demand in Europe, the overall supply pivot appears to be easing price pressure rather than creating a clear bullish catalyst. The mixed signals keep confidence for a new long position below the required 0.65, so I hold this cycle."
+    },
+    {
+      "timestamp": "2026-09-19T05:05:12.401223+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 95.47,
+      "confidence": null,
+      "reasoning": "No recent oil-market news or clear supply/demand catalyst; price is stable around $95. No actionable signal to initiate or adjust a long position."
     }
   ],
   "last_trade_at": null,
