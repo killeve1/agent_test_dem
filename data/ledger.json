@@ -181,6 +181,14 @@
       "price": 100.3,
       "confidence": null,
       "reasoning": "No recent oil-market news or clear catalyst; price is stable around $100.3 and we have no open position, so insufficient conviction to open a long."
+    },
+    {
+      "timestamp": "2026-09-19T17:01:52.414942+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 100.3,
+      "confidence": null,
+      "reasoning": "No new oil-market news or catalyst since last check; price is stable around $100.3. Without clear supply/demand shock or OPEC+ decision, confidence to open or add is low (<0.65), so holding."
     }
   ],
   "last_trade_at": null,
