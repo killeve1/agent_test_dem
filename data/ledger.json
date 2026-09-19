@@ -165,6 +165,14 @@
       "price": 95.47,
       "confidence": null,
       "reasoning": "No recent oil-market news or clear supply/demand catalyst; price is stable around $95. No actionable signal to initiate or adjust a long position."
+    },
+    {
+      "timestamp": "2026-09-19T07:04:32.545467+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 95.47,
+      "confidence": null,
+      "reasoning": "No recent oil-market news or supply/disruption events were found, and price alone does not provide a clear entry signal. Without a catalyst, confidence in opening or adding to a long position is below the required 0.65, so we hold this cycle."
     }
   ],
   "last_trade_at": null,
