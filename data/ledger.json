@@ -221,6 +221,14 @@
       "price": 100.3,
       "confidence": null,
       "reasoning": "No new oil-market news or catalyst has appeared; price is stable around $100.3. With no supply/disruption or OPEC+ decision, confidence in opening a long is low (<0.65)."
+    },
+    {
+      "timestamp": "2026-09-20T05:08:59.268447+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 100.3,
+      "confidence": null,
+      "reasoning": "The only new headline is about ADNOC's investment in floating LNG infrastructure and longer oil routes, which does not present a clear supply\u2011demand shock, OPEC+ decision, or significant inventory surprise. Without a strong catalyst, confidence in opening or adding a long position is low (<0.65), so we hold."
     }
   ],
   "last_trade_at": null,
