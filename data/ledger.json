@@ -237,6 +237,14 @@
       "price": 100.3,
       "confidence": null,
       "reasoning": "No new oil market news or price signals this cycle; without a clear catalyst, confidence to open or add a long position is low, so we hold."
+    },
+    {
+      "timestamp": "2026-09-20T12:33:28.231814+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 96.08,
+      "confidence": null,
+      "reasoning": "No new oil-market headlines were available and the portfolio holds no position. Without a clear supply or demand catalyst, confidence in opening a long is insufficient."
     }
   ],
   "last_trade_at": null,
