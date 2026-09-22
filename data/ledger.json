@@ -309,6 +309,14 @@
       "price": 93.54,
       "confidence": null,
       "reasoning": "The only recent headline describes a short\u2011term price rebound driven by speculative US\u2011Iran diplomatic hopes, which is a vague catalyst with no concrete supply\u2011side impact. Without a clear OPEC+ decision, inventory surprise, or major geopolitical disruption, confidence in a durable upward move is below the 0.65 threshold, so we hold."
+    },
+    {
+      "timestamp": "2026-09-23T03:49:17.993403+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 89.72,
+      "confidence": null,
+      "reasoning": "Recent news shows US crude inventories unexpectedly rose 1.8M barrels and Norway output is still below prior-year levels, offering no clear bullish catalyst. Without an OPEC+ supply cut or major geopolitical disruption, confidence in a new long is below 0.65, so we hold."
     }
   ],
   "last_trade_at": null,
