@@ -365,6 +365,14 @@
       "price": 95.2,
       "confidence": null,
       "reasoning": "Recent headlines present mixed signals: heightened Red Sea insurance costs and Iran's warning of expanded conflict suggest supply\u2011risk bullish pressure, but Russia's new Arctic exports and large discounted Iraqi crude purchases indicate additional supply. With these conflicting factors and no dominant catalyst, confidence in a profitable long entry is below the 0.65 threshold, so we hold this cycle."
+    },
+    {
+      "timestamp": "2026-09-25T04:10:17.752107+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 94.31,
+      "confidence": null,
+      "reasoning": "Recent headlines focus on electrification and biofuels, with no clear supply\u2011side shock, OPEC+ decision, or inventory surprise that would materially impact crude prices. Without a high\u2011conviction catalyst, confidence in a new long entry is below the required 0.65 threshold, so we hold."
     }
   ],
   "last_trade_at": null,
