@@ -349,6 +349,14 @@
       "price": 92.57,
       "confidence": null,
       "reasoning": "Recent headlines only mention a new East African refinery and a US diesel export comment, neither of which constitute a strong near\u2011term bullish catalyst for crude oil. No OPEC+ supply cuts, inventory surprises, or geopolitical supply shocks are evident, so confidence in a new long exceeds the 0.65 threshold. Holding maintains flexibility while we await clearer market drivers."
+    },
+    {
+      "timestamp": "2026-09-24T06:04:35.967815+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 91.67,
+      "confidence": null,
+      "reasoning": "No new oil-market news or catalysts were found; without a clear supply, inventory, or geopolitical trigger, confidence in initiating a long position is insufficient."
     }
   ],
   "last_trade_at": null,
