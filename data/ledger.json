@@ -357,9 +357,17 @@
       "price": 91.67,
       "confidence": null,
       "reasoning": "No new oil-market news or catalysts were found; without a clear supply, inventory, or geopolitical trigger, confidence in initiating a long position is insufficient."
+    },
+    {
+      "timestamp": "2026-09-25T00:55:55.473517+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 95.2,
+      "confidence": null,
+      "reasoning": "Recent headlines present mixed signals: heightened Red Sea insurance costs and Iran's warning of expanded conflict suggest supply\u2011risk bullish pressure, but Russia's new Arctic exports and large discounted Iraqi crude purchases indicate additional supply. With these conflicting factors and no dominant catalyst, confidence in a profitable long entry is below the 0.65 threshold, so we hold this cycle."
     }
   ],
   "last_trade_at": null,
-  "day_start_date": "2026-09-24",
+  "day_start_date": "2026-09-25",
   "day_start_equity": 100000.0
 }
