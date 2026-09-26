@@ -12,7 +12,7 @@ IST = timezone(timedelta(hours=5, minutes=30), name="IST")
 # --- LLM (Groq) ---
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
 GROQ_MODEL = "openai/gpt-oss-120b"  # llama-3.3-70b-versatile was decommissioned by Groq on 08/16/2026
-MAX_AGENT_STEPS = 6  # safety cap on tool-call loop iterations per run
+MAX_AGENT_STEPS = 10  # safety cap on tool-call loop iterations per run (allows deep-dive research)
 
 # --- Market data ---
 FUTURES_SYMBOL = "CL=F"  # WTI Crude front-month via Yahoo Finance (yfinance)

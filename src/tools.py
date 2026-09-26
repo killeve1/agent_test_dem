@@ -14,7 +14,7 @@ confidence, current volatility (ATR), and account equity — see risk.py.
 
 import json
 
-from news import fetch_headlines
+from news import fetch_headlines, fetch_full_article, search_oil_news
 from market import get_current_price, get_volatility
 from ledger import get_portfolio_state, execute_mock_trade
 from config import FUTURES_SYMBOL
@@ -38,6 +38,54 @@ TOOL_SCHEMAS = [
                         "default": 10,
                     }
                 },
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "read_full_article",
+            "description": (
+                "Scrape and read the complete text of a news article by URL. "
+                "Use this when a headline or summary mentions a significant catalyst "
+                "(e.g., pipeline attacks, OPEC decisions, sanctions) and you need the "
+                "full details, numbers, or official statements before deciding."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "type": "string",
+                        "description": "The URL of the article to read.",
+                    }
+                },
+                "required": ["url"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "search_news",
+            "description": (
+                "Search real-time news and the web for queries (e.g. 'Saudi Aramco East-West pipeline damage', "
+                "'EIA inventory report crude', 'OPEC quota meeting'). Use this to fact-check "
+                "rumors, verify whether disruptions are continuing or resolved, or find official commentary."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "type": "string",
+                        "description": "Specific search query keywords.",
+                    },
+                    "max_results": {
+                        "type": "integer",
+                        "description": "Maximum number of search results to return (default 5).",
+                        "default": 5,
+                    },
+                },
+                "required": ["query"],
             },
         },
     },
@@ -117,6 +165,19 @@ def dispatch_tool_call(name: str, arguments: dict) -> dict:
     if name == "get_recent_news":
         max_results = arguments.get("max_results", 10)
         return {"headlines": fetch_headlines(max_results=max_results)}
+
+    if name == "read_full_article":
+        url = arguments.get("url", "")
+        if not url:
+            return {"error": "Missing 'url' argument."}
+        return fetch_full_article(url)
+
+    if name == "search_news":
+        query = arguments.get("query", "")
+        if not query:
+            return {"error": "Missing 'query' argument."}
+        max_results = arguments.get("max_results", 5)
+        return {"results": search_oil_news(query, max_results=max_results)}
 
     if name == "get_current_price":
         return get_current_price()
