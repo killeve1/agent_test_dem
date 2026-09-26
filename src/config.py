@@ -9,9 +9,17 @@ import os
 from datetime import timezone, timedelta
 IST = timezone(timedelta(hours=5, minutes=30), name="IST")
 
-# --- LLM (Groq) ---
+# --- LLM Providers ---
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
-GROQ_MODEL = "openai/gpt-oss-120b"  # llama-3.3-70b-versatile was decommissioned by Groq on 08/16/2026
+GROQ_MODEL = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b")
+GROQ_RELEVANCE_MODEL = os.environ.get("GROQ_RELEVANCE_MODEL", "openai/gpt-oss-20b")
+
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+
+# Provider for the main trading decision loop: 'gemini' (default if GEMINI_API_KEY set) or 'groq'
+LLM_PROVIDER = os.environ.get("LLM_PROVIDER", "gemini" if GEMINI_API_KEY else "groq")
+
 MAX_AGENT_STEPS = 10  # safety cap on tool-call loop iterations per run (allows deep-dive research)
 
 # --- Market data ---
@@ -19,11 +27,18 @@ FUTURES_SYMBOL = "CL=F"  # WTI Crude front-month via Yahoo Finance (yfinance)
                           # Use "BZ=F" for Brent instead
 
 # --- News sources (RSS feeds, no API key needed) ---
+# Lane 1: Oil-specific feeds (filtered by cheap OIL_KEYWORDS substring match)
 RSS_FEEDS = [
     "https://oilprice.com/rss/main",
     "https://www.eia.gov/rss/todayinenergy.xml",
     "https://www.investing.com/rss/news_301.rss",  # commodities news
 ]
+
+# Lane 2: General news feeds (unfiltered candidates, triaged via batched LLM in relevance.py)
+GENERAL_NEWS_FEEDS = [
+    "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml",
+]
+
 
 # Keywords used to filter headlines down to oil-relevant ones
 OIL_KEYWORDS = [

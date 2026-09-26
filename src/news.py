@@ -13,7 +13,9 @@ import requests
 import urllib.parse
 from bs4 import BeautifulSoup
 
-from config import RSS_FEEDS, OIL_KEYWORDS, SEEN_NEWS_PATH
+from config import RSS_FEEDS, GENERAL_NEWS_FEEDS, OIL_KEYWORDS, SEEN_NEWS_PATH
+from relevance import classify_batch
+
 
 
 
@@ -43,20 +45,21 @@ def _is_oil_relevant(title: str, summary: str) -> bool:
 
 def fetch_headlines(max_results: int = 10, only_new: bool = True) -> list[dict]:
     """
-    Pull oil-relevant headlines from configured RSS feeds.
-
-    Returns a list of dicts: {title, summary, link, source, published}
-    ordered newest-first. If only_new is True, already-seen headlines
-    (from previous runs) are excluded.
+    Two-lane headline ingestion:
+    - Lane 1 (RSS_FEEDS): Fast keyword filtering on specialized energy feeds.
+    - Lane 2 (GENERAL_NEWS_FEEDS): Broad international feeds triaged via batched LLM classification.
+    Both lanes deduplicate against SEEN_NEWS_PATH to avoid duplicate classifications.
     """
     seen = _load_seen()
-    results = []
+    lane1_results = []
+    lane2_candidates = []
 
+    # --- Lane 1: Specialized Energy Feeds (Keyword-filtered) ---
     for feed_url in RSS_FEEDS:
         try:
             parsed = feedparser.parse(feed_url)
         except Exception:
-            continue  # a single bad feed shouldn't kill the whole run
+            continue
 
         for entry in parsed.entries:
             title = getattr(entry, "title", "").strip()
@@ -71,25 +74,68 @@ def fetch_headlines(max_results: int = 10, only_new: bool = True) -> list[dict]:
             if only_new and h in seen:
                 continue
 
-            results.append({
+            lane1_results.append({
                 "title": title,
                 "summary": summary[:400],
                 "link": link,
                 "source": parsed.feed.get("title", feed_url),
                 "published": getattr(entry, "published", ""),
+                "lane": "energy_rss",
                 "_hash": h,
             })
 
-    # Mark everything returned as seen for next time
-    for item in results:
+    # --- Lane 2: General/Geopolitical Feeds (Batched LLM triage) ---
+    for feed_url in GENERAL_NEWS_FEEDS:
+        try:
+            parsed = feedparser.parse(feed_url)
+        except Exception:
+            continue
+
+        for entry in parsed.entries:
+            title = getattr(entry, "title", "").strip()
+            summary = getattr(entry, "summary", "").strip()
+            link = getattr(entry, "link", "").strip()
+            if not title or not link:
+                continue
+
+            h = _headline_hash(title, link)
+            if only_new and h in seen:
+                continue
+
+            lane2_candidates.append({
+                "title": title,
+                "summary": summary[:400],
+                "link": link,
+                "source": parsed.feed.get("title", feed_url),
+                "published": getattr(entry, "published", ""),
+                "lane": "general_triaged",
+                "_hash": h,
+            })
+
+    # Triage Lane 2 candidates via a single batched Groq call
+    lane2_results = []
+    if lane2_candidates:
+        # Mark all candidates as seen in dedup cache so we never re-evaluate them
+        for item in lane2_candidates:
+            seen.add(item["_hash"])
+        # Classify batch; fails closed on any error
+        lane2_results = classify_batch(lane2_candidates)
+
+    # Mark Lane 1 results as seen
+    for item in lane1_results:
         seen.add(item["_hash"])
+
     _save_seen(seen)
 
+    # Combine results from both lanes
+    combined = lane1_results + lane2_results
+
     # Strip internal hash field before returning to the agent/model
-    for item in results:
+    for item in combined:
         item.pop("_hash", None)
 
-    return results[:max_results]
+    return combined[:max_results]
+
 
 
 def fetch_full_article(url: str, max_chars: int = 3500) -> dict:
