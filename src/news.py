@@ -218,7 +218,7 @@ def search_oil_news(query: str, max_results: int = 5) -> list[dict]:
         for item in items:
             results.append({
                 "title": item.get("title", ""),
-                "summary": item.get("body", ""),
+                "summary": item.get("body", "")[:400],
                 "link": item.get("url", ""),
                 "source": item.get("source", "Web News"),
                 "date": item.get("date", ""),
@@ -232,7 +232,7 @@ def search_oil_news(query: str, max_results: int = 5) -> list[dict]:
             for item in items:
                 results.append({
                     "title": item.get("title", ""),
-                    "summary": item.get("body", ""),
+                    "summary": item.get("body", "")[:400],
                     "link": item.get("href", ""),
                     "source": "Web Search",
                     "date": "",

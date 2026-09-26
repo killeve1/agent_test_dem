@@ -30,6 +30,8 @@ from config import (
     GEMINI_MODEL,
     LLM_PROVIDER,
     MAX_AGENT_STEPS,
+    GROQ_MAX_COMPLETION_TOKENS,
+    GROQ_CONTEXT_BUDGET_CHARS,
     DECISION_LOG_PATH,
     MIN_CONFIDENCE_TO_ACT,
     IST,
@@ -257,12 +259,29 @@ def _run_gemini_cycle() -> None:
         print(f"Gemini cycle complete: {final_trade_result['result']}")
 
 
+def _compact_messages(messages: list[dict]) -> None:
+    """
+    Keeps the Groq conversation under GROQ_CONTEXT_BUDGET_CHARS by truncating the
+    oldest tool results first. The system prompt, briefing, and assistant turns
+    are kept intact so the model still knows what it already looked at.
+    """
+    def total() -> int:
+        return sum(len(json.dumps(m)) for m in messages)
+
+    for m in messages:
+        if total() <= GROQ_CONTEXT_BUDGET_CHARS:
+            return
+        if m.get("role") == "tool" and len(m["content"]) > 300:
+            m["content"] = m["content"][:300] + "... [truncated to save context; re-call the tool if needed]"
+
+
 def _run_groq_cycle() -> None:
     """Runs a decision cycle using Groq with OpenAI-compatible tool calling."""
     if not GROQ_API_KEY:
         raise RuntimeError("GROQ_API_KEY is not set. Export it or set it as a GitHub Actions secret.")
 
-    client = Groq(api_key=GROQ_API_KEY)
+    # Extra retries so 429 per-minute token limits wait out (SDK honours retry-after)
+    client = Groq(api_key=GROQ_API_KEY, max_retries=6)
     messages = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user", "content": _build_cycle_briefing()},
@@ -272,14 +291,17 @@ def _run_groq_cycle() -> None:
     final_trade_result = None
 
     for step in range(MAX_AGENT_STEPS):
+        _compact_messages(messages)
         response = client.chat.completions.create(
             model=GROQ_MODEL,
             messages=messages,
             tools=TOOL_SCHEMAS,
             tool_choice="auto",
+            max_completion_tokens=GROQ_MAX_COMPLETION_TOKENS,
         )
         msg = response.choices[0].message
-        messages.append(msg.model_dump(exclude_none=True))
+        # Drop the model's reasoning text — it isn't needed later and would be resent every step
+        messages.append(msg.model_dump(exclude_none=True, exclude={"reasoning"}))
 
         if not msg.tool_calls:
             # Nudge model toward finishing with an explicit trade decision

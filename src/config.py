@@ -15,12 +15,20 @@ GROQ_MODEL = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b")
 GROQ_RELEVANCE_MODEL = os.environ.get("GROQ_RELEVANCE_MODEL", "openai/gpt-oss-20b")
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+# gemini-2.5-flash was retired for new API users (404 NOT_FOUND); override via env if needed
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 
 # Provider for the main trading decision loop: 'gemini' (default if GEMINI_API_KEY set) or 'groq'
 LLM_PROVIDER = os.environ.get("LLM_PROVIDER", "gemini" if GEMINI_API_KEY else "groq")
 
 MAX_AGENT_STEPS = 10  # safety cap on tool-call loop iterations per run (allows deep-dive research)
+
+# Groq free tier rejects any single request over 8,000 tokens (TPM limit), and the
+# loop resends the whole conversation each step. Tool schemas + system prompt are
+# ~2k tokens and completions are capped below, so older tool results are compacted
+# once the conversation exceeds this many characters (~4 chars per token).
+GROQ_MAX_COMPLETION_TOKENS = 1024
+GROQ_CONTEXT_BUDGET_CHARS = 16000
 
 # --- Market data ---
 FUTURES_SYMBOL = "CL=F"  # WTI Crude front-month via Yahoo Finance (yfinance)
