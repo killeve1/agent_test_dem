@@ -413,6 +413,14 @@
       "price": 92.41,
       "confidence": null,
       "reasoning": "No new oil-market headlines were returned and there is no clear supply or geopolitical catalyst. Without a high-confidence trigger, opening or adding to a long position would be speculative; therefore I hold this cycle."
+    },
+    {
+      "timestamp": "2026-09-26T17:21:52.122313+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 92.41,
+      "confidence": null,
+      "reasoning": "No new oil-market news or catalyst detected this cycle; without a clear supply, demand, or inventory-driven signal, confidence to initiate a long position is insufficient."
     }
   ],
   "last_trade_at": null,
