@@ -8,7 +8,9 @@ Entry point for the Oil News Trading Agent. Runs one decision cycle:
   2. Multi-provider execution: uses Google Gemini (if configured) with
      automatic fallback to Groq.
   3. Let the model call research tools (news, full article reader, search,
-     price, portfolio) autonomously with no rigid sequence.
+     price, price history, portfolio) autonomously with no rigid sequence.
+     If a position is open, its stored thesis (thesis.py) is put in front
+     of the model first so it re-validates rather than starting from scratch.
   4. Conclude with execute_mock_trade and append the audit trail to decision_log.jsonl.
 
 Run this on a schedule (see .github/workflows/run_agent.yml) — each invocation
@@ -36,6 +38,7 @@ from tools import TOOL_SCHEMAS, dispatch_tool_call
 from market import get_current_price
 from ledger import get_portfolio_state, execute_mock_trade
 from risk import check_hard_stop_loss
+from thesis import load_thesis
 
 SYSTEM_PROMPT = f"""You are an autonomous crude oil portfolio manager managing a \
 mock/paper fund. No real money or real exchange is ever involved — every trade \
@@ -50,11 +53,14 @@ Investigative Autonomy:
 - You operate with full discretion over your research process. You are NOT bound to a \
 fixed sequence or checklist.
 - You have research tools (`get_recent_news`, `read_full_article`, `search_news`), market \
-data (`get_current_price`), and portfolio accounting (`get_portfolio_state`).
+data (`get_current_price`, `get_price_history`), and portfolio accounting (`get_portfolio_state`).
 - Use whatever tools you need based on the situation:
   * If the market is quiet and no major catalysts are present, verify state and hold.
-  * If you hold an open position, evaluate its health, price trajectory, and whether your \
-thesis remains intact or has been disproven.
+  * If you hold an open position, your FIRST task is to re-validate your stored thesis: \
+check whether any invalidation criterion has been met and what happened with the events \
+on your monitoring horizon. If the thesis is disproven, close. Record your verdict in `thesis_note`.
+  * Before entering, use `get_price_history` to check whether the move has already been \
+priced in (you'd be buying the top of a spike) or is just beginning.
   * If a potential catalyst emerges, investigate before taking risk. Never trade on a brief \
 headline snippet alone. Use `read_full_article` to examine details and numbers, and \
 use `search_news` to check for official statements (Aramco, OPEC, EIA) or resolution status.
@@ -67,9 +73,31 @@ Decision & Risk Rules:
 If your confidence is lower, choose "hold".
 - For "open_long" and "add", supply your confidence (0.0 to 1.0). The deterministic risk engine \
 computes the position size from your confidence and market volatility (ATR); you do not choose contract counts.
+- When opening a position from flat, you must record a thesis: `catalyst` (the specific disruption), \
+`invalidation_criteria` (the concrete event or price action that proves you wrong), and \
+`monitoring_horizon` (the upcoming events you are waiting on). This is your memory for future cycles.
 - Two safety controls are enforced in code: a 3% hard stop-loss (force-closed prior to your run if breached), \
 and a 5% daily loss circuit breaker. If blocked, accept the limit and hold.
 """
+
+
+def _build_cycle_briefing() -> str:
+    """The opening user message for a cycle — carries the active thesis across runs."""
+    thesis = load_thesis()
+    if not thesis["active"]:
+        return (
+            "You are currently flat (no active thesis). Assess current oil market news, verify key "
+            "catalysts, check price history for context, review portfolio state, and conclude with "
+            "an execute_mock_trade decision."
+        )
+    return (
+        "You hold an open position. This is the active thesis you recorded in earlier cycles:\n"
+        f"{json.dumps(thesis, indent=2)}\n\n"
+        "First, determine whether this thesis is still intact, strengthened, or disproven: check "
+        "the invalidation criteria against the latest news and price action, and check the status "
+        "of the events on your monitoring horizon. Then decide (hold / add / close) and conclude "
+        "with execute_mock_trade, putting your thesis verdict in thesis_note."
+    )
 
 
 def _log_decision(record: dict) -> None:
@@ -157,16 +185,32 @@ def _run_gemini_cycle() -> None:
         tool_call_log.append({"tool": "get_current_price", "arguments": args, "result": res})
         return res
 
+    def get_price_history(period: str = "1d", interval: str = "15m") -> dict:
+        """Get recent OHLCV candles, period high/low and % change for crude futures.
+        period: one of 1d, 5d, 1mo, 3mo. interval: one of 5m, 15m, 30m, 1h, 1d."""
+        args = {"period": period, "interval": interval}
+        res = dispatch_tool_call("get_price_history", args)
+        tool_call_log.append({"tool": "get_price_history", "arguments": args, "result": res})
+        return res
+
     def get_portfolio_state() -> dict:
-        """Get current mock fund portfolio: cash, margin, open position, P&L, equity, and halts."""
+        """Get current mock fund portfolio: cash, margin, open position, P&L, equity, halts, and active thesis."""
         args = {}
         res = dispatch_tool_call("get_portfolio_state", args)
         tool_call_log.append({"tool": "get_portfolio_state", "arguments": args, "result": res})
         return res
 
-    def execute_mock_trade(action: str, reasoning: str, confidence: float = 0.0) -> dict:
-        """Execute a trade (open_long, add, close, hold) against the mock ledger."""
-        args = {"action": action, "reasoning": reasoning, "confidence": confidence}
+    def execute_mock_trade(action: str, reasoning: str, confidence: float = 0.0,
+                           catalyst: str = "", invalidation_criteria: str = "",
+                           monitoring_horizon: str = "", thesis_note: str = "") -> dict:
+        """Execute a trade (open_long, add, close, hold) against the mock ledger.
+        open_long from flat requires catalyst and invalidation_criteria (plus ideally
+        monitoring_horizon). thesis_note records your per-cycle verdict on the thesis."""
+        args = {
+            "action": action, "reasoning": reasoning, "confidence": confidence,
+            "catalyst": catalyst, "invalidation_criteria": invalidation_criteria,
+            "monitoring_horizon": monitoring_horizon, "thesis_note": thesis_note,
+        }
         res = dispatch_tool_call("execute_mock_trade", args)
         tool_call_log.append({"tool": "execute_mock_trade", "arguments": args, "result": res})
         final_trade_container["final_trade"] = {"arguments": args, "result": res}
@@ -177,6 +221,7 @@ def _run_gemini_cycle() -> None:
         read_full_article,
         search_news,
         get_current_price,
+        get_price_history,
         get_portfolio_state,
         execute_mock_trade,
     ]
@@ -189,7 +234,7 @@ def _run_gemini_cycle() -> None:
 
     client.models.generate_content(
         model=GEMINI_MODEL,
-        contents="Assess current oil market news, verify key catalysts, review portfolio state, and conclude with an execute_mock_trade decision.",
+        contents=_build_cycle_briefing(),
         config=config,
     )
 
@@ -218,7 +263,10 @@ def _run_groq_cycle() -> None:
         raise RuntimeError("GROQ_API_KEY is not set. Export it or set it as a GitHub Actions secret.")
 
     client = Groq(api_key=GROQ_API_KEY)
-    messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+    messages = [
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": _build_cycle_briefing()},
+    ]
 
     tool_call_log = []
     final_trade_result = None

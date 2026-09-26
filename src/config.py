@@ -87,3 +87,5 @@ LEDGER_PATH = os.path.join(DATA_DIR, "ledger.json")
 SEEN_NEWS_PATH = os.path.join(DATA_DIR, "seen_headlines.json")
 DECISION_LOG_PATH = os.path.join(DATA_DIR, "decision_log.jsonl")
 CALIBRATION_LOG_PATH = os.path.join(DATA_DIR, "calibration_log.jsonl")
+ACTIVE_THESIS_PATH = os.path.join(DATA_DIR, "active_thesis.json")
+

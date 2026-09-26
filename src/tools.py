@@ -15,7 +15,7 @@ confidence, current volatility (ATR), and account equity — see risk.py.
 import json
 
 from news import fetch_headlines, fetch_full_article, search_oil_news
-from market import get_current_price, get_volatility
+from market import get_current_price, get_volatility, get_price_history, PRICE_HISTORY_PERIODS, PRICE_HISTORY_INTERVALS
 from ledger import get_portfolio_state, execute_mock_trade
 from config import FUTURES_SYMBOL
 
@@ -100,12 +100,43 @@ TOOL_SCHEMAS = [
     {
         "type": "function",
         "function": {
+            "name": "get_price_history",
+            "description": (
+                f"Get recent OHLCV candles and trend metrics (period high/low, % change) for "
+                f"{FUTURES_SYMBOL}. Use this to judge whether a headline has already been priced "
+                "in (e.g. crude spiked hours ago and you'd be buying the top) or whether a move "
+                "is just beginning, and to track your open position's trajectory."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "period": {
+                        "type": "string",
+                        "enum": list(PRICE_HISTORY_PERIODS),
+                        "description": "Lookback window. Default '1d'.",
+                        "default": "1d",
+                    },
+                    "interval": {
+                        "type": "string",
+                        "enum": list(PRICE_HISTORY_INTERVALS),
+                        "description": "Candle size. Default '15m'. Use '1h' or '1d' for longer periods.",
+                        "default": "15m",
+                    },
+                },
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
             "name": "get_portfolio_state",
             "description": (
                 "Get the current mock portfolio: cash, margin held, open position "
                 "size, average entry price/confidence, realized/unrealized P&L, "
                 "equity, whether a cooldown is active, and whether the daily loss "
-                "circuit breaker has halted new trades."
+                "circuit breaker has halted new trades, plus the active investment "
+                "thesis (catalyst, invalidation criteria, monitoring horizon, notes) "
+                "behind any open position."
             ),
             "parameters": {"type": "object", "properties": {}},
         },
@@ -123,7 +154,9 @@ TOOL_SCHEMAS = [
                 "appropriately sized position from your confidence, current "
                 "market volatility, and account risk limits. If the daily loss "
                 "circuit breaker is active or a cooldown is in effect, open/add "
-                "will be blocked regardless of confidence."
+                "will be blocked regardless of confidence. Opening a position from "
+                "flat REQUIRES a thesis (catalyst + invalidation_criteria); it is "
+                "stored and shown to you in every later cycle until the position closes."
             ),
             "parameters": {
                 "type": "object",
@@ -148,6 +181,32 @@ TOOL_SCHEMAS = [
                     "reasoning": {
                         "type": "string",
                         "description": "Concise justification for this decision, citing the specific news/price evidence.",
+                    },
+                    "catalyst": {
+                        "type": "string",
+                        "description": (
+                            "Required for 'open_long' from flat. The specific disruption or event "
+                            "driving the trade. On 'add'/'hold', supply only to revise the thesis."
+                        ),
+                    },
+                    "invalidation_criteria": {
+                        "type": "string",
+                        "description": (
+                            "Required for 'open_long' from flat. The concrete event or price action "
+                            "that would prove the thesis wrong (e.g. 'OPEC raises quotas' or "
+                            "'WTI closes below $95')."
+                        ),
+                    },
+                    "monitoring_horizon": {
+                        "type": "string",
+                        "description": "Upcoming events/dates you are waiting on to confirm or refute the thesis.",
+                    },
+                    "thesis_note": {
+                        "type": "string",
+                        "description": (
+                            "Short note appended to the active thesis log — e.g. your verdict on "
+                            "whether the thesis is still intact this cycle and why."
+                        ),
                     },
                 },
                 "required": ["action", "reasoning"],
@@ -182,6 +241,12 @@ def dispatch_tool_call(name: str, arguments: dict) -> dict:
     if name == "get_current_price":
         return get_current_price()
 
+    if name == "get_price_history":
+        return get_price_history(
+            period=arguments.get("period", "1d"),
+            interval=arguments.get("interval", "15m"),
+        )
+
     if name == "get_portfolio_state":
         # Include current price context so P&L is meaningful
         try:
@@ -207,6 +272,10 @@ def dispatch_tool_call(name: str, arguments: dict) -> dict:
             reasoning=arguments.get("reasoning", ""),
             confidence=arguments.get("confidence"),
             atr=atr,
+            catalyst=arguments.get("catalyst") or None,
+            invalidation_criteria=arguments.get("invalidation_criteria") or None,
+            monitoring_horizon=arguments.get("monitoring_horizon") or None,
+            thesis_note=arguments.get("thesis_note") or None,
         )
 
     return {"error": f"Unknown tool '{name}'"}

@@ -69,6 +69,61 @@ def get_volatility(symbol: str = FUTURES_SYMBOL, lookback_days: int = ATR_LOOKBA
     }
 
 
+PRICE_HISTORY_PERIODS = ("1d", "5d", "1mo", "3mo")
+PRICE_HISTORY_INTERVALS = ("5m", "15m", "30m", "1h", "1d")
+
+
+def get_price_history(symbol: str = FUTURES_SYMBOL, period: str = "1d", interval: str = "15m",
+                      max_candles: int = 16) -> dict:
+    """
+    Fetches historical candles and trend metrics for the crude futures contract.
+    Gives the agent technical context: recent trend, period high/low, and recent
+    candles — e.g. whether a headline was already priced in hours ago.
+    """
+    if period not in PRICE_HISTORY_PERIODS:
+        return {"symbol": symbol, "error": f"Unsupported period '{period}'. Use one of {PRICE_HISTORY_PERIODS}."}
+    if interval not in PRICE_HISTORY_INTERVALS:
+        return {"symbol": symbol, "error": f"Unsupported interval '{interval}'. Use one of {PRICE_HISTORY_INTERVALS}."}
+
+    ticker = yf.Ticker(symbol)
+    try:
+        hist = ticker.history(period=period, interval=interval)
+    except Exception as e:
+        return {"symbol": symbol, "error": f"Failed to fetch price history: {e}"}
+
+    if hist.empty:
+        return {"symbol": symbol, "error": f"No historical price data returned for {symbol}"}
+
+    first_close = float(hist["Close"].iloc[0])
+    last_close = float(hist["Close"].iloc[-1])
+    change_pct = ((last_close - first_close) / first_close) * 100.0
+
+    candles = []
+    for idx, row in hist.tail(max_candles).iterrows():
+        time_str = idx.strftime("%Y-%m-%d %H:%M") if hasattr(idx, "strftime") else str(idx)
+        candles.append({
+            "time": time_str,
+            "open": round(float(row["Open"]), 2),
+            "high": round(float(row["High"]), 2),
+            "low": round(float(row["Low"]), 2),
+            "close": round(float(row["Close"]), 2),
+            "volume": int(row["Volume"]),
+        })
+
+    return {
+        "symbol": symbol,
+        "period": period,
+        "interval": interval,
+        "current_price": round(last_close, 2),
+        "period_high": round(float(hist["High"].max()), 2),
+        "period_low": round(float(hist["Low"].min()), 2),
+        "change_pct": f"{change_pct:+.2f}%",
+        "recent_candles": candles,
+    }
+
+
 if __name__ == "__main__":
     print(get_current_price())
     print(get_volatility())
+    print(get_price_history())
+

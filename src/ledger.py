@@ -37,6 +37,7 @@ from config import (
     IST,
 )
 from risk import compute_position_size, check_daily_loss_limit, get_or_reset_daily_baseline
+from thesis import load_thesis, open_thesis, update_thesis, clear_thesis
 
 
 def _now_iso() -> str:
@@ -111,6 +112,10 @@ def get_portfolio_state(current_price: float | None = None) -> dict:
     daily_status = check_daily_loss_limit(ledger, equity)
     save_ledger(ledger)  # persist any baseline reset that check performed
     state["daily_loss_halt"] = daily_status
+
+    # Working memory: why the current position was opened and what would invalidate it
+    thesis = load_thesis()
+    state["active_thesis"] = thesis if thesis["active"] else None
     return state
 
 
@@ -139,7 +144,9 @@ def _log_calibration(avg_confidence: float, realized_pnl: float, contracts: int,
 
 
 def execute_mock_trade(action: str, price: float, reasoning: str,
-                        confidence: float | None = None, atr: float | None = None) -> dict:
+                        confidence: float | None = None, atr: float | None = None,
+                        catalyst: str | None = None, invalidation_criteria: str | None = None,
+                        monitoring_horizon: str | None = None, thesis_note: str | None = None) -> dict:
     """
     Tool-facing trade execution against the mock ledger only.
 
@@ -148,6 +155,10 @@ def execute_mock_trade(action: str, price: float, reasoning: str,
     For "open_long"/"add": confidence (0-1) and atr (current volatility)
     are REQUIRED — quantity is computed by risk.compute_position_size,
     not chosen directly. For "close"/"hold", confidence/atr are ignored.
+
+    Thesis (see thesis.py): opening a position from flat REQUIRES catalyst
+    and invalidation_criteria; add/hold may refine the active thesis or
+    append a thesis_note; close clears it.
 
     Returns a result dict, including whether the trade was accepted or
     blocked (cooldown, position cap, insufficient margin cash, or the
@@ -162,7 +173,12 @@ def execute_mock_trade(action: str, price: float, reasoning: str,
             "price": price, "confidence": confidence, "reasoning": reasoning,
         })
         save_ledger(ledger)
-        return {"status": "ok", "action": "hold", "message": "No position change."}
+        result = {"status": "ok", "action": "hold", "message": "No position change."}
+        if ledger["position_contracts"] > 0:
+            thesis = update_thesis("hold", price, catalyst, invalidation_criteria, monitoring_horizon, thesis_note)
+            if thesis is not None:
+                result["active_thesis"] = thesis
+        return result
 
     # Daily circuit breaker — enforced here regardless of caller, for open/add only.
     if action in ("open_long", "add"):
@@ -181,6 +197,14 @@ def execute_mock_trade(action: str, price: float, reasoning: str,
     if action in ("open_long", "add"):
         if confidence is None or atr is None:
             return {"status": "error", "reason": "confidence and atr are required to size an open_long/add trade."}
+
+        needs_new_thesis = ledger["position_contracts"] == 0 or not load_thesis()["active"]
+        if needs_new_thesis and not (catalyst and invalidation_criteria):
+            return {
+                "status": "error",
+                "reason": "Opening a position requires a thesis: supply 'catalyst' and 'invalidation_criteria' "
+                          "(and ideally 'monitoring_horizon').",
+            }
 
         sizing = compute_position_size(
             confidence=confidence, atr=atr, equity=equity_now,
@@ -230,6 +254,11 @@ def execute_mock_trade(action: str, price: float, reasoning: str,
         ledger["trades"].append(entry)
         save_ledger(ledger)
 
+        if needs_new_thesis:
+            thesis = open_thesis(price, catalyst, invalidation_criteria, monitoring_horizon, thesis_note)
+        else:
+            thesis = update_thesis(action, price, catalyst, invalidation_criteria, monitoring_horizon, thesis_note)
+
         return {
             "status": "ok", "action": action, "quantity_filled": quantity,
             "new_position_contracts": ledger["position_contracts"],
@@ -237,6 +266,7 @@ def execute_mock_trade(action: str, price: float, reasoning: str,
             "cash_available": round(ledger["cash"], 2),
             "margin_held": round(ledger["margin_held"], 2),
             "sizing_detail": sizing,
+            "active_thesis": thesis,
         }
 
     elif action == "close":
@@ -259,6 +289,7 @@ def execute_mock_trade(action: str, price: float, reasoning: str,
             "timestamp": _now_iso(), "action": "close", "quantity": qty,
             "price": price, "confidence": confidence, "reasoning": reasoning,
             "realized_pnl": round(realized, 2),
+            "closed_thesis": clear_thesis(),
         })
         save_ledger(ledger)
 
