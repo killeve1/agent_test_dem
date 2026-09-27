@@ -91,3 +91,7 @@ export GEMINI_API_KEY=...      # optional; if set, Gemini is the default provide
 python src/agent.py            # one decision cycle
 python src/calibration.py      # confidence calibration report
 ```
+
+## Viewing the dashboard
+
+Run `streamlit run streamlit_app.py` locally to visualize the mock fund's equity curve, active trades, historical calibration, and action distribution. The dashboard reads from `data/` (ledger, decisions, thesis, and calibration log). A read-only public instance is deployed on Streamlit Community Cloud and pointed at this repo's latest data.
