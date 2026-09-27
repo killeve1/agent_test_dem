@@ -72,6 +72,33 @@ def get_volatility(symbol: str = FUTURES_SYMBOL, lookback_days: int = ATR_LOOKBA
 PRICE_HISTORY_PERIODS = ("1d", "5d", "1mo", "3mo")
 PRICE_HISTORY_INTERVALS = ("5m", "15m", "30m", "1h", "1d")
 
+_UNIT_MINUTES = {"m": 1, "h": 60, "d": 1440, "wk": 10080, "mo": 43200, "y": 525600}
+
+
+def _to_minutes(value: str) -> float | None:
+    """'3d' -> 4320, '1h' -> 60, '2wk' -> 20160. None if unparseable."""
+    value = value.strip().lower()
+    for unit in sorted(_UNIT_MINUTES, key=len, reverse=True):
+        if value.endswith(unit) and value[: -len(unit)].isdigit():
+            return int(value[: -len(unit)]) * _UNIT_MINUTES[unit]
+    return None
+
+
+def _normalize(value: str, allowed: tuple, round_up: bool) -> str | None:
+    """
+    Maps a model-supplied period/interval onto a supported value, so e.g. a
+    requested '3d' becomes '5d' instead of failing the cycle. Periods round up
+    (never give less history than asked); intervals go to the nearest size.
+    """
+    if value in allowed:
+        return value
+    minutes = _to_minutes(value)
+    if minutes is None:
+        return None
+    if round_up:
+        return next((a for a in allowed if _to_minutes(a) >= minutes), allowed[-1])
+    return min(allowed, key=lambda a: abs(_to_minutes(a) - minutes))
+
 
 def get_price_history(symbol: str = FUTURES_SYMBOL, period: str = "1d", interval: str = "15m",
                       max_candles: int = 16) -> dict:
@@ -80,10 +107,13 @@ def get_price_history(symbol: str = FUTURES_SYMBOL, period: str = "1d", interval
     Gives the agent technical context: recent trend, period high/low, and recent
     candles — e.g. whether a headline was already priced in hours ago.
     """
-    if period not in PRICE_HISTORY_PERIODS:
-        return {"symbol": symbol, "error": f"Unsupported period '{period}'. Use one of {PRICE_HISTORY_PERIODS}."}
-    if interval not in PRICE_HISTORY_INTERVALS:
-        return {"symbol": symbol, "error": f"Unsupported interval '{interval}'. Use one of {PRICE_HISTORY_INTERVALS}."}
+    requested_period, requested_interval = period, interval
+    period = _normalize(period, PRICE_HISTORY_PERIODS, round_up=True)
+    interval = _normalize(interval, PRICE_HISTORY_INTERVALS, round_up=False)
+    if period is None:
+        return {"symbol": symbol, "error": f"Unsupported period '{requested_period}'. Use one of {PRICE_HISTORY_PERIODS}."}
+    if interval is None:
+        return {"symbol": symbol, "error": f"Unsupported interval '{requested_interval}'. Use one of {PRICE_HISTORY_INTERVALS}."}
 
     ticker = yf.Ticker(symbol)
     try:

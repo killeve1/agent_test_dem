@@ -21,7 +21,7 @@ import json
 import os
 from datetime import datetime
 
-from groq import Groq
+from groq import Groq, BadRequestError
 
 from config import (
     GROQ_API_KEY,
@@ -155,7 +155,13 @@ def _run_gemini_cycle() -> None:
     from google import genai
     from google.genai import types
 
-    client = genai.Client(api_key=GEMINI_API_KEY)
+    # Retry transient overload (503) / rate-limit (429) errors before falling back to Groq
+    client = genai.Client(
+        api_key=GEMINI_API_KEY,
+        http_options=types.HttpOptions(
+            retry_options=types.HttpRetryOptions(attempts=4, initial_delay=5.0, http_status_codes=[429, 500, 503]),
+        ),
+    )
     tool_call_log = []
     final_trade_container = {"final_trade": None}
 
@@ -292,13 +298,24 @@ def _run_groq_cycle() -> None:
 
     for step in range(MAX_AGENT_STEPS):
         _compact_messages(messages)
-        response = client.chat.completions.create(
-            model=GROQ_MODEL,
-            messages=messages,
-            tools=TOOL_SCHEMAS,
-            tool_choice="auto",
-            max_completion_tokens=GROQ_MAX_COMPLETION_TOKENS,
-        )
+        try:
+            response = client.chat.completions.create(
+                model=GROQ_MODEL,
+                messages=messages,
+                tools=TOOL_SCHEMAS,
+                tool_choice="auto",
+                max_completion_tokens=GROQ_MAX_COMPLETION_TOKENS,
+            )
+        except BadRequestError as e:
+            # Groq validates tool-call arguments server-side and rejects the whole
+            # request on a malformed call — feed the error back and let the model retry.
+            if "tool_use_failed" not in str(e):
+                raise
+            messages.append({
+                "role": "user",
+                "content": f"Your last tool call was rejected: {e.message}. Fix the arguments and try again.",
+            })
+            continue
         msg = response.choices[0].message
         # Drop the model's reasoning text — it isn't needed later and would be resent every step
         messages.append(msg.model_dump(exclude_none=True, exclude={"reasoning"}))

@@ -110,16 +110,19 @@ TOOL_SCHEMAS = [
             "parameters": {
                 "type": "object",
                 "properties": {
+                    # No "enum" here: Groq rejects the whole request (400) if the model
+                    # emits an off-list value. market.get_price_history normalizes instead.
                     "period": {
                         "type": "string",
-                        "enum": list(PRICE_HISTORY_PERIODS),
-                        "description": "Lookback window. Default '1d'.",
+                        "description": f"Lookback window, one of {', '.join(PRICE_HISTORY_PERIODS)}. Default '1d'.",
                         "default": "1d",
                     },
                     "interval": {
                         "type": "string",
-                        "enum": list(PRICE_HISTORY_INTERVALS),
-                        "description": "Candle size. Default '15m'. Use '1h' or '1d' for longer periods.",
+                        "description": (
+                            f"Candle size, one of {', '.join(PRICE_HISTORY_INTERVALS)}. Default '15m'. "
+                            "Use '1h' or '1d' for longer periods."
+                        ),
                         "default": "15m",
                     },
                 },
