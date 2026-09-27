@@ -14,7 +14,7 @@ REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 _SRC_DIR = os.path.join(REPO_ROOT, "src")
 if _SRC_DIR not in sys.path:
-    sys.path.insert(0, _SRC_DIR)
+    sys.path.append(_SRC_DIR)
 
 from config import (  # noqa: E402
     HARD_STOP_LOSS_PCT,
@@ -34,14 +34,20 @@ def load_ledger(path: str = LEDGER_PATH) -> dict | None:
     if not os.path.exists(path):
         return None
     with open(path) as f:
-        return json.load(f)
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            return None
 
 
 def load_thesis(path: str = THESIS_PATH) -> dict | None:
     if not os.path.exists(path):
         return None
     with open(path) as f:
-        return json.load(f)
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            return None
 
 
 def load_jsonl(path: str) -> tuple[list[dict], int]:
@@ -200,6 +206,8 @@ def find_triggering_headline(decisions: list[dict]) -> dict | None:
             continue
         action = trade.get("arguments", {}).get("action")
         if action not in ("open_long", "add", "close"):
+            continue
+        if trade.get("result", {}).get("status") != "ok":
             continue
 
         reasoning = trade["arguments"].get("reasoning", "")

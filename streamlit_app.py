@@ -58,7 +58,7 @@ else:
 st.subheader("Trade Log")
 trades = ledger.get("trades", [])
 if trades:
-    st.dataframe(pd.DataFrame(trades), use_container_width=True)
+    st.dataframe(pd.DataFrame(trades), width="stretch")
 else:
     st.info("No trades logged yet.")
 
@@ -103,12 +103,13 @@ st.write(f"Daily loss circuit breaker: {risk['max_daily_loss_pct']:.1f}% — {ha
 st.subheader("Confidence Calibration")
 calibration = dd.calibration_stats(calibration_records)
 total_closed = sum(s["trades"] for s in calibration)
-if total_closed == 0:
+if len(calibration_records) == 0:
     st.info("No closed trades yet — nothing to calibrate against.")
 else:
-    st.dataframe(pd.DataFrame(calibration), use_container_width=True)
+    st.dataframe(pd.DataFrame(calibration), width="stretch")
+    st.caption(f"{len(calibration_records)} closed trade(s) total.")
     if total_closed < 20:
         st.caption(
-            f"Only {total_closed} closed trade(s) so far — not yet "
+            f"Only {total_closed} bucketed closed trade(s) so far — not yet "
             "statistically meaningful."
         )

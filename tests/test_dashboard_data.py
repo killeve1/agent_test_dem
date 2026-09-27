@@ -188,11 +188,14 @@ def test_calibration_stats_buckets_by_confidence():
     assert high_bucket["win_rate"] == 1.0
 
 
-def _cycle_with_trade(timestamp, action, reasoning, tool_calls=None):
+def _cycle_with_trade(timestamp, action, reasoning, tool_calls=None, status="ok"):
     cycle = _cycle(timestamp)
     if tool_calls:
         cycle["tool_calls"] = tool_calls
-    cycle["final_trade"] = {"arguments": {"action": action, "reasoning": reasoning}, "result": {}}
+    cycle["final_trade"] = {
+        "arguments": {"action": action, "reasoning": reasoning},
+        "result": {"status": status},
+    }
     return cycle
 
 
@@ -263,3 +266,45 @@ def test_find_triggering_headline_uses_most_recent_non_hold_cycle():
     ]
     result = dd.find_triggering_headline(decisions)
     assert result["headline"]["link"] == "new"
+
+
+def test_find_triggering_headline_skips_blocked_trade_and_finds_earlier_ok():
+    tool_calls_blocked = [{"tool": "get_recent_news", "arguments": {}, "result": {"headlines": [
+        {"title": "Blocked catalyst headline", "summary": "", "link": "blocked", "source": "s", "published": "p"},
+    ]}}]
+    tool_calls_ok = [{"tool": "get_recent_news", "arguments": {}, "result": {"headlines": [
+        {"title": "Executed catalyst headline", "summary": "", "link": "executed", "source": "s", "published": "p"},
+    ]}}]
+    decisions = [
+        _cycle_with_trade(
+            "t1", "close", "Executed catalyst headline drove this.",
+            tool_calls=tool_calls_ok, status="ok",
+        ),
+        _cycle_with_trade(
+            "t2", "open_long", "Blocked catalyst headline drove this.",
+            tool_calls=tool_calls_blocked, status="blocked",
+        ),
+    ]
+    result = dd.find_triggering_headline(decisions)
+    assert result["headline"]["link"] == "executed"
+    assert result["action"] == "close"
+
+
+def test_find_triggering_headline_none_when_all_blocked():
+    decisions = [
+        _cycle_with_trade("t1", "open_long", "would have triggered", status="blocked"),
+        _cycle_with_trade("t2", "close", "would have triggered too", status="error"),
+    ]
+    assert dd.find_triggering_headline(decisions) is None
+
+
+def test_load_ledger_malformed_json_returns_none(tmp_path):
+    path = tmp_path / "ledger.json"
+    path.write_text("{not valid json")
+    assert dd.load_ledger(str(path)) is None
+
+
+def test_load_thesis_malformed_json_returns_none(tmp_path):
+    path = tmp_path / "active_thesis.json"
+    path.write_text("{not valid json")
+    assert dd.load_thesis(str(path)) is None
