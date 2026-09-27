@@ -29,3 +29,20 @@ def load_thesis(path: str = THESIS_PATH) -> dict | None:
         return None
     with open(path) as f:
         return json.load(f)
+
+
+def load_jsonl(path: str) -> tuple[list[dict], int]:
+    if not os.path.exists(path):
+        return [], 0
+    records = []
+    skipped = 0
+    with open(path) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                records.append(json.loads(line))
+            except json.JSONDecodeError:
+                skipped += 1
+    return records, skipped

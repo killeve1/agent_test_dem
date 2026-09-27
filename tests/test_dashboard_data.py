@@ -24,3 +24,26 @@ def test_load_thesis_reads_json(tmp_path):
     path.write_text(json.dumps({"active": False}))
     result = dd.load_thesis(str(path))
     assert result == {"active": False}
+
+
+def test_load_jsonl_missing_file_returns_empty(tmp_path):
+    missing = tmp_path / "no_such_log.jsonl"
+    records, skipped = dd.load_jsonl(str(missing))
+    assert records == []
+    assert skipped == 0
+
+
+def test_load_jsonl_parses_valid_lines(tmp_path):
+    path = tmp_path / "log.jsonl"
+    path.write_text('{"a": 1}\n{"a": 2}\n')
+    records, skipped = dd.load_jsonl(str(path))
+    assert records == [{"a": 1}, {"a": 2}]
+    assert skipped == 0
+
+
+def test_load_jsonl_skips_malformed_lines(tmp_path):
+    path = tmp_path / "log.jsonl"
+    path.write_text('{"a": 1}\nnot json\n{"a": 2}\n\n')
+    records, skipped = dd.load_jsonl(str(path))
+    assert records == [{"a": 1}, {"a": 2}]
+    assert skipped == 1
