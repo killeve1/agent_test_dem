@@ -2,9 +2,13 @@ name: Oil News Agent Cycle
 
 on:
   schedule:
-    # Every 30 minutes. GitHub may delay this by a few minutes under load —
-    # fine for a news-driven strategy, not for anything latency-sensitive.
-    - cron: "*/10 * * * *"
+    # Every 3 hours, matching the Cloudflare Worker's cron trigger (see
+    # cloudflare-worker/wrangler.toml for the Groq free-tier budget math
+    # behind this interval). This trigger is an unreliable free backstop
+    # (observed firing every 2-6 hours rather than on schedule) in case the
+    # Worker or its GitHub token lapses -- kept at the same interval as the
+    # Worker so an occasional overlap doesn't blow the daily token budget.
+    - cron: "0 */3 * * *"
   workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
 
 permissions:
