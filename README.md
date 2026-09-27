@@ -80,6 +80,8 @@ data/
   calibration_log.jsonl  # one record per closed position
 .github/workflows/
   run_agent.yml   # scheduled GitHub Actions run, free, no server needed
+cloudflare-worker/
+  src/index.js    # calls GitHub's workflow_dispatch API on a reliable Cron Trigger
 tests/
   test_dashboard_data.py  # pytest coverage for dashboard_data.py's pure logic
 dashboard_data.py   # read-only loading/derivation logic for the dashboard (no streamlit import)
