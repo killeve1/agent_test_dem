@@ -30,6 +30,7 @@ from config import (
     GEMINI_MODEL,
     LLM_PROVIDER,
     MAX_AGENT_STEPS,
+    GROQ_FORCED_DECISION_STEPS,
     GROQ_MAX_COMPLETION_TOKENS,
     GROQ_CONTEXT_BUDGET_CHARS,
     DECISION_LOG_PATH,
@@ -296,14 +297,30 @@ def _run_groq_cycle() -> None:
     tool_call_log = []
     final_trade_result = None
 
+    # The last GROQ_FORCED_DECISION_STEPS steps force an execute_mock_trade call, so a
+    # cycle can't burn its whole step budget on research and end with no decision.
+    # Two steps (not one) leaves a retry if the forced call itself is rejected.
+    first_forced_step = MAX_AGENT_STEPS - GROQ_FORCED_DECISION_STEPS
+
     for step in range(MAX_AGENT_STEPS):
+        forced = step >= first_forced_step
+        if step == first_forced_step:
+            messages.append({
+                "role": "user",
+                "content": (
+                    "Research budget exhausted. Call execute_mock_trade now with your decision based on "
+                    "what you have found. If the evidence is not conclusive, choose 'hold'."
+                ),
+            })
         _compact_messages(messages)
         try:
             response = client.chat.completions.create(
                 model=GROQ_MODEL,
                 messages=messages,
                 tools=TOOL_SCHEMAS,
-                tool_choice="auto",
+                tool_choice=(
+                    {"type": "function", "function": {"name": "execute_mock_trade"}} if forced else "auto"
+                ),
                 max_completion_tokens=GROQ_MAX_COMPLETION_TOKENS,
             )
         except BadRequestError as e:
@@ -346,6 +363,9 @@ def _run_groq_cycle() -> None:
 
             if name == "execute_mock_trade":
                 final_trade_result = {"arguments": arguments, "result": result}
+                if result.get("status") == "error":
+                    # e.g. open_long without a thesis — let the model correct it on the next step
+                    final_trade_result = None
 
         if final_trade_result is not None:
             break

@@ -29,6 +29,8 @@ MAX_AGENT_STEPS = 10  # safety cap on tool-call loop iterations per run (allows 
 # once the conversation exceeds this many characters (~4 chars per token).
 GROQ_MAX_COMPLETION_TOKENS = 1024
 GROQ_CONTEXT_BUDGET_CHARS = 16000
+# Final N Groq steps force an execute_mock_trade call so every cycle ends with a decision
+GROQ_FORCED_DECISION_STEPS = 2
 
 # --- Market data ---
 FUTURES_SYMBOL = "CL=F"  # WTI Crude front-month via Yahoo Finance (yfinance)
