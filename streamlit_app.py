@@ -69,3 +69,46 @@ if dist:
     st.bar_chart(pd.Series(dist, name="count"))
 else:
     st.info("No trades yet.")
+
+# --- Active thesis ---
+st.subheader("Active Thesis")
+if thesis is None or not thesis.get("active"):
+    st.info("Flat — no active thesis.")
+else:
+    st.write(f"**Catalyst:** {thesis['catalyst']}")
+    st.write(f"**Invalidation criteria:** {thesis['invalidation_criteria']}")
+    st.write(f"**Monitoring horizon:** {thesis['monitoring_horizon']}")
+    st.write(f"**Entered at:** {thesis['entered_at']} @ ${thesis['price_at_entry']}")
+    if thesis.get("notes"):
+        st.write("**Notes:**")
+        for note in thesis["notes"]:
+            st.write(f"- {note}")
+
+# --- Risk & limits ---
+st.subheader("Risk & Limits")
+risk = dd.compute_risk_limits(ledger, decisions)
+st.write(
+    f"Hard stop-loss: {risk['hard_stop_loss_pct']:.1f}% "
+    f"(current unrealized loss: {risk['unrealized_loss_pct']:.2f}%)"
+)
+st.write(f"Position: {risk['position_contracts']} / {risk['max_position_contracts']} contracts")
+st.write(
+    f"Margin held: ${risk['margin_held']:,.2f} "
+    f"(${risk['margin_per_contract']:,.2f}/contract)"
+)
+halt_label = "HALTED" if risk["daily_loss_halt"].get("halted") else "OK"
+st.write(f"Daily loss circuit breaker: {risk['max_daily_loss_pct']:.1f}% — {halt_label}")
+
+# --- Confidence calibration ---
+st.subheader("Confidence Calibration")
+calibration = dd.calibration_stats(calibration_records)
+total_closed = sum(s["trades"] for s in calibration)
+if total_closed == 0:
+    st.info("No closed trades yet — nothing to calibrate against.")
+else:
+    st.dataframe(pd.DataFrame(calibration), use_container_width=True)
+    if total_closed < 20:
+        st.caption(
+            f"Only {total_closed} closed trade(s) so far — not yet "
+            "statistically meaningful."
+        )
