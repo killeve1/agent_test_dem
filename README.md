@@ -82,7 +82,7 @@ data/
   run_agent.yml   # scheduled GitHub Actions run, free, no server needed
 ```
 
-## Running locally
+## Running the agent
 
 ```bash
 pip install -r requirements.txt
@@ -91,3 +91,7 @@ export GEMINI_API_KEY=...      # optional; if set, Gemini is the default provide
 python src/agent.py            # one decision cycle
 python src/calibration.py      # confidence calibration report
 ```
+
+## Viewing the dashboard
+
+Run `streamlit run streamlit_app.py` locally to visualize the mock fund's equity curve, active trades, historical calibration, and action distribution. The dashboard reads from `data/` (ledger, decisions, and thesis). A read-only public instance is deployed on Streamlit Community Cloud and pointed at this repo's latest data.
