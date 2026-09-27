@@ -49,7 +49,9 @@ col6.metric("Daily Halt", "HALTED" if kpis["daily_loss_halt"].get("halted") else
 st.subheader("Equity Curve")
 curve = dd.get_equity_curve(decisions)
 if curve:
-    curve_df = pd.DataFrame(curve).set_index("timestamp")
+    curve_df = pd.DataFrame(curve)
+    curve_df["timestamp"] = pd.to_datetime(curve_df["timestamp"])
+    curve_df = curve_df.set_index("timestamp")
     st.line_chart(curve_df["equity"])
 else:
     st.info("No equity data points logged yet.")
@@ -58,7 +60,10 @@ else:
 st.subheader("Trade Log")
 trades = ledger.get("trades", [])
 if trades:
-    st.dataframe(pd.DataFrame(trades), width="stretch")
+    trades_df = pd.DataFrame(trades)
+    if "timestamp" in trades_df.columns:
+        trades_df["timestamp"] = pd.to_datetime(trades_df["timestamp"])
+    st.dataframe(trades_df, width="stretch")
 else:
     st.info("No trades logged yet.")
 
