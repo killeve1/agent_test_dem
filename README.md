@@ -101,3 +101,7 @@ python src/calibration.py      # confidence calibration report
 Run `streamlit run streamlit_app.py` locally to visualize the mock fund's equity curve, active trades, historical calibration, and action distribution. The dashboard reads from `data/` (ledger, decisions, thesis, and calibration log). A read-only public instance is deployed on Streamlit Community Cloud and pointed at this repo's latest data:
 
 **https://oiltraderag.streamlit.app/**
+
+## Reliable scheduling (Cloudflare cron trigger)
+
+GitHub's own scheduled-workflow cron is unreliable on the free tier — `run_agent.yml` is configured for every 10 minutes but was observed actually firing every 2-6 hours. `cloudflare-worker/` holds a small Worker that calls GitHub's `workflow_dispatch` API on a real, reliable Cloudflare Cron Trigger schedule instead; GitHub's own `schedule:` trigger stays in place as a free backstop. See `cloudflare-worker/README.md` for setup.

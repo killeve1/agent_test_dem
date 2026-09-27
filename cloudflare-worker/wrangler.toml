@@ -1,0 +1,23 @@
+name = "oil-agent-cron-trigger"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Reliable, timing-only. This Worker does no agent logic itself -- it just
+# pokes GitHub's workflow_dispatch API on a schedule GitHub's own free
+# scheduled-workflow cron can't reliably hit (observed: configured for
+# every 10 minutes, actually firing every 2-6 hours). Adjust the interval
+# here freely; the real constraint is Groq/Gemini free-tier rate limits,
+# not Cloudflare's (Cron Triggers support down to 1-minute granularity).
+[triggers]
+crons = ["*/10 * * * *"]
+
+[vars]
+GITHUB_OWNER = "killeve1"
+GITHUB_REPO = "agent_test_dem"
+GITHUB_WORKFLOW_FILE = "run_agent.yml"
+GITHUB_REF = "main"
+
+# Secret (never committed): set with
+#   npx wrangler secret put GITHUB_TOKEN
+# A fine-grained GitHub PAT scoped to just this repo, with
+# "Actions: write" permission (needed to call workflow_dispatch).
