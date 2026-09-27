@@ -75,15 +75,21 @@ COOLDOWN_MINUTES = 60           # minimum gap between trades
 # confidence score (0-1); the size is then risk_dollars / (stop-distance in $).
 # NOTE on scale: one full-size WTI contract represents 1,000 barrels
 # (~$100k of notional exposure at $100/barrel), so a $100k mock account
-# risking a conservative 1-2% per trade will often size to 0 contracts
-# under normal volatility — that's a real mismatch between account size
-# and instrument size, not a bug in the formula. 4% keeps sizing usable
-# at this account size under typical volatility while still correctly
-# sizing down to 0 in a volatility spike (the risk model refusing to
-# take a full contract's worth of risk is intentional, not an error).
+# needs a large enough risk budget to ever clear one contract's stop-distance
+# risk. 4% was the original value here, on the assumption that occasional
+# zero-sizing during a volatility spike was fine — but real production data
+# showed every single open_long attempt (40/40 over two weeks) sized to 0
+# contracts, because recent WTI ATR (~$4.1-4.5/barrel) makes one contract's
+# risk (ATR x STOP_LOSS_ATR_MULTIPLIER x CONTRACT_MULTIPLIER, ~$6,200-7,600)
+# larger than 4% of equity even at full (1.0) confidence. Raised to 12% so
+# the agent can clear one contract even at MIN_CONFIDENCE_TO_ACT (0.65)
+# under this instrument's typical recent volatility. This doesn't raise real
+# capital risk beyond HARD_STOP_LOSS_PCT below, which force-closes before a
+# position's nominal stop-distance loss is ever reached — this value only
+# gates whether sizing produces a non-zero quantity at all.
 # If you want finer-grained sizing, switch FUTURES_SYMBOL to CME's Micro
 # WTI (100 barrels/contract) and set CONTRACT_MULTIPLIER = 100 instead.
-BASE_RISK_PCT = 0.04           # fraction of current equity risked on a full-confidence (1.0) trade
+BASE_RISK_PCT = 0.12           # fraction of current equity risked on a full-confidence (1.0) trade
 ATR_LOOKBACK_DAYS = 14        # lookback window for Average True Range (volatility proxy)
 STOP_LOSS_ATR_MULTIPLIER = 1.5  # stop distance = ATR x this multiplier
 
