@@ -164,3 +164,25 @@ def test_action_distribution_empty_trades():
     ledger = _ledger()
     ledger["trades"] = []
     assert dd.action_distribution(ledger) == {}
+
+
+def test_calibration_stats_empty_records_all_buckets_empty():
+    stats = dd.calibration_stats([])
+    assert len(stats) == 3
+    assert all(s["trades"] == 0 and s["win_rate"] is None for s in stats)
+
+
+def test_calibration_stats_buckets_by_confidence():
+    records = [
+        {"avg_confidence": 0.70, "won": True, "realized_pnl": 500.0},
+        {"avg_confidence": 0.72, "won": False, "realized_pnl": -200.0},
+        {"avg_confidence": 0.90, "won": True, "realized_pnl": 1000.0},
+    ]
+    stats = dd.calibration_stats(records)
+    low_bucket = next(s for s in stats if s["label"] == "0.65-0.75")
+    high_bucket = next(s for s in stats if s["label"] == "0.85-1.00")
+    assert low_bucket["trades"] == 2
+    assert low_bucket["win_rate"] == 0.5
+    assert low_bucket["total_pnl"] == 300.0
+    assert high_bucket["trades"] == 1
+    assert high_bucket["win_rate"] == 1.0

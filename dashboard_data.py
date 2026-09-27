@@ -120,3 +120,32 @@ def action_distribution(ledger: dict) -> dict[str, int]:
         action = trade.get("action", "unknown")
         counts[action] = counts.get(action, 0) + 1
     return counts
+
+
+CALIBRATION_BUCKETS = [
+    (0.65, 0.75, "0.65-0.75"),
+    (0.75, 0.85, "0.75-0.85"),
+    (0.85, 1.01, "0.85-1.00"),
+]
+
+
+def calibration_stats(records: list[dict]) -> list[dict]:
+    stats = []
+    for low, high, label in CALIBRATION_BUCKETS:
+        bucket = [r for r in records if low <= r["avg_confidence"] < high]
+        if not bucket:
+            stats.append({
+                "label": label, "trades": 0,
+                "win_rate": None, "avg_pnl": None, "total_pnl": None,
+            })
+            continue
+        wins = sum(1 for r in bucket if r["won"])
+        total_pnl = sum(r["realized_pnl"] for r in bucket)
+        stats.append({
+            "label": label,
+            "trades": len(bucket),
+            "win_rate": wins / len(bucket),
+            "avg_pnl": total_pnl / len(bucket),
+            "total_pnl": total_pnl,
+        })
+    return stats
