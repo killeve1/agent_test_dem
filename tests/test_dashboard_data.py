@@ -83,3 +83,46 @@ def test_get_equity_curve_skips_cycles_without_portfolio_state():
 
 def test_get_equity_curve_empty_when_no_decisions():
     assert dd.get_equity_curve([]) == []
+
+
+def _ledger(**overrides):
+    base = {
+        "cash": 100000.0,
+        "position_contracts": 0,
+        "avg_entry_price": 0.0,
+        "realized_pnl": 0.0,
+        "day_start_equity": 100000.0,
+    }
+    base.update(overrides)
+    return base
+
+
+def test_compute_kpis_falls_back_to_ledger_cash_with_no_decisions():
+    kpis = dd.compute_kpis(_ledger(), [])
+    assert kpis["equity"] == 100000.0
+    assert kpis["unrealized_pnl"] == 0.0
+    assert kpis["today_pnl_pct"] == 0.0
+    assert kpis["daily_loss_halt"] == {"halted": False}
+
+
+def test_compute_kpis_uses_latest_cycle_equity_and_pnl():
+    decisions = [
+        _cycle("t1", {"equity": 100000.0}),
+        _cycle("t2", {
+            "equity": 101500.0,
+            "unrealized_pnl": 1500.0,
+            "daily_loss_halt": {"halted": False},
+        }),
+    ]
+    kpis = dd.compute_kpis(_ledger(position_contracts=2, avg_entry_price=90.0), decisions)
+    assert kpis["equity"] == 101500.0
+    assert kpis["unrealized_pnl"] == 1500.0
+    assert kpis["position_contracts"] == 2
+    assert kpis["avg_entry_price"] == 90.0
+    assert round(kpis["today_pnl_pct"], 2) == 1.5
+
+
+def test_compute_kpis_missing_unrealized_pnl_key_treated_as_zero():
+    decisions = [_cycle("t1", {"equity": 99000.0})]
+    kpis = dd.compute_kpis(_ledger(), decisions)
+    assert kpis["unrealized_pnl"] == 0.0

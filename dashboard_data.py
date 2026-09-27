@@ -64,3 +64,21 @@ def get_equity_curve(decisions: list[dict]) -> list[dict]:
                 points.append({"timestamp": cycle.get("timestamp"), "equity": call["result"]["equity"]})
                 break
     return points
+
+
+def compute_kpis(ledger: dict, decisions: list[dict]) -> dict:
+    state = latest_portfolio_state(decisions)
+    equity = state["equity"] if state else ledger["cash"]
+    unrealized_pnl = state.get("unrealized_pnl", 0.0) if state else 0.0
+    day_start_equity = ledger.get("day_start_equity") or equity
+    today_pnl_pct = ((equity - day_start_equity) / day_start_equity * 100) if day_start_equity else 0.0
+    daily_loss_halt = state.get("daily_loss_halt", {"halted": False}) if state else {"halted": False}
+    return {
+        "equity": equity,
+        "position_contracts": ledger["position_contracts"],
+        "avg_entry_price": ledger["avg_entry_price"],
+        "unrealized_pnl": unrealized_pnl,
+        "realized_pnl": ledger["realized_pnl"],
+        "today_pnl_pct": today_pnl_pct,
+        "daily_loss_halt": daily_loss_halt,
+    }
