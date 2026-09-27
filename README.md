@@ -80,6 +80,10 @@ data/
   calibration_log.jsonl  # one record per closed position
 .github/workflows/
   run_agent.yml   # scheduled GitHub Actions run, free, no server needed
+tests/
+  test_dashboard_data.py  # pytest coverage for dashboard_data.py's pure logic
+dashboard_data.py   # read-only loading/derivation logic for the dashboard (no streamlit import)
+streamlit_app.py    # Streamlit rendering layer, entrypoint for the dashboard
 ```
 
 ## Running locally
@@ -94,4 +98,6 @@ python src/calibration.py      # confidence calibration report
 
 ## Viewing the dashboard
 
-Run `streamlit run streamlit_app.py` locally to visualize the mock fund's equity curve, active trades, historical calibration, and action distribution. The dashboard reads from `data/` (ledger, decisions, thesis, and calibration log). A read-only public instance is deployed on Streamlit Community Cloud and pointed at this repo's latest data.
+Run `streamlit run streamlit_app.py` locally to visualize the mock fund's equity curve, active trades, historical calibration, and action distribution. The dashboard reads from `data/` (ledger, decisions, thesis, and calibration log). A read-only public instance is deployed on Streamlit Community Cloud and pointed at this repo's latest data:
+
+**https://oiltraderag.streamlit.app/**
