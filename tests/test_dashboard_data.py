@@ -186,3 +186,80 @@ def test_calibration_stats_buckets_by_confidence():
     assert low_bucket["total_pnl"] == 300.0
     assert high_bucket["trades"] == 1
     assert high_bucket["win_rate"] == 1.0
+
+
+def _cycle_with_trade(timestamp, action, reasoning, tool_calls=None):
+    cycle = _cycle(timestamp)
+    if tool_calls:
+        cycle["tool_calls"] = tool_calls
+    cycle["final_trade"] = {"arguments": {"action": action, "reasoning": reasoning}, "result": {}}
+    return cycle
+
+
+def test_find_triggering_headline_none_when_all_holds():
+    decisions = [_cycle_with_trade("t1", "hold", "nothing new")]
+    assert dd.find_triggering_headline(decisions) is None
+
+
+def test_find_triggering_headline_none_when_no_decisions():
+    assert dd.find_triggering_headline([]) is None
+
+
+def test_find_triggering_headline_picks_best_keyword_match():
+    tool_calls = [{
+        "tool": "get_recent_news",
+        "arguments": {},
+        "result": {"headlines": [
+            {"title": "OPEC+ announces surprise output cut", "summary": "", "link": "u1", "source": "s1", "published": "p1"},
+            {"title": "Local weather forecast for the weekend", "summary": "", "link": "u2", "source": "s2", "published": "p2"},
+        ]},
+    }]
+    decisions = [_cycle_with_trade(
+        "t1", "open_long",
+        "OPEC+ announced a surprise output cut, tightening supply.",
+        tool_calls=tool_calls,
+    )]
+    result = dd.find_triggering_headline(decisions)
+    assert result["action"] == "open_long"
+    assert result["headline"]["link"] == "u1"
+
+
+def test_find_triggering_headline_normalizes_search_news_shape():
+    tool_calls = [{
+        "tool": "search_news",
+        "arguments": {},
+        "result": {"results": [
+            {"title": "Saudi Aramco confirms disruption", "summary": "supply cut", "link": "u3", "source": "s3", "date": "d3"},
+        ]},
+    }]
+    decisions = [_cycle_with_trade(
+        "t1", "close",
+        "Saudi Aramco confirmed the disruption is resolved.",
+        tool_calls=tool_calls,
+    )]
+    result = dd.find_triggering_headline(decisions)
+    assert result["headline"]["link"] == "u3"
+    assert result["headline"]["published"] == "d3"
+
+
+def test_find_triggering_headline_none_headline_when_cycle_has_no_news_calls():
+    decisions = [_cycle_with_trade("t1", "add", "portfolio state check only", tool_calls=[])]
+    result = dd.find_triggering_headline(decisions)
+    assert result["headline"] is None
+    assert result["action"] == "add"
+
+
+def test_find_triggering_headline_uses_most_recent_non_hold_cycle():
+    tool_calls_old = [{"tool": "get_recent_news", "arguments": {}, "result": {"headlines": [
+        {"title": "Old catalyst headline", "summary": "", "link": "old", "source": "s", "published": "p"},
+    ]}}]
+    tool_calls_new = [{"tool": "get_recent_news", "arguments": {}, "result": {"headlines": [
+        {"title": "New catalyst headline", "summary": "", "link": "new", "source": "s", "published": "p"},
+    ]}}]
+    decisions = [
+        _cycle_with_trade("t1", "open_long", "Old catalyst headline drove this.", tool_calls=tool_calls_old),
+        _cycle_with_trade("t2", "hold", "nothing changed"),
+        _cycle_with_trade("t3", "close", "New catalyst headline drove this.", tool_calls=tool_calls_new),
+    ]
+    result = dd.find_triggering_headline(decisions)
+    assert result["headline"]["link"] == "new"

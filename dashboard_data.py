@@ -7,6 +7,7 @@ bucketing) has a real test cycle instead of only manual verification.
 """
 import json
 import os
+import re
 import sys
 
 REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -149,3 +150,73 @@ def calibration_stats(records: list[dict]) -> list[dict]:
             "total_pnl": total_pnl,
         })
     return stats
+
+
+_STOPWORDS = {
+    "the", "a", "an", "to", "of", "in", "on", "for", "and", "or", "is", "are",
+    "with", "at", "by", "from", "as", "it", "this", "that", "its", "be",
+    "has", "have", "will", "was", "were", "not", "no", "new", "after",
+    "amid", "over", "into", "than", "but",
+}
+
+
+def _tokenize(text: str) -> set[str]:
+    return {
+        w for w in re.findall(r"[a-z0-9]+", text.lower())
+        if w not in _STOPWORDS and len(w) > 2
+    }
+
+
+def _cycle_headlines(cycle: dict) -> list[dict]:
+    headlines = []
+    for call in cycle.get("tool_calls", []):
+        tool = call.get("tool")
+        result = call.get("result", {})
+        if tool == "get_recent_news":
+            for h in result.get("headlines", []):
+                headlines.append({
+                    "title": h.get("title", ""),
+                    "summary": h.get("summary", ""),
+                    "link": h.get("link", ""),
+                    "source": h.get("source", ""),
+                    "published": h.get("published", ""),
+                })
+        elif tool == "search_news":
+            for h in result.get("results", []):
+                headlines.append({
+                    "title": h.get("title", ""),
+                    "summary": h.get("summary", ""),
+                    "link": h.get("link", ""),
+                    "source": h.get("source", ""),
+                    "published": h.get("date", ""),
+                })
+    return headlines
+
+
+def find_triggering_headline(decisions: list[dict]) -> dict | None:
+    for cycle in reversed(decisions):
+        trade = cycle.get("final_trade")
+        if not trade:
+            continue
+        action = trade.get("arguments", {}).get("action")
+        if action not in ("open_long", "add", "close"):
+            continue
+
+        reasoning = trade["arguments"].get("reasoning", "")
+        headlines = _cycle_headlines(cycle)
+        if not headlines:
+            return {
+                "headline": None, "reasoning": reasoning,
+                "action": action, "timestamp": cycle.get("timestamp"),
+            }
+
+        reasoning_tokens = _tokenize(reasoning)
+        best = max(
+            headlines,
+            key=lambda h: len(_tokenize(h["title"] + " " + h["summary"]) & reasoning_tokens),
+        )
+        return {
+            "headline": best, "reasoning": reasoning,
+            "action": action, "timestamp": cycle.get("timestamp"),
+        }
+    return None
