@@ -82,7 +82,7 @@ data/
   run_agent.yml   # scheduled GitHub Actions run, free, no server needed
 ```
 
-## Running the agent
+## Running locally
 
 ```bash
 pip install -r requirements.txt
