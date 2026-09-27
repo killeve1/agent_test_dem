@@ -7,8 +7,20 @@ bucketing) has a real test cycle instead of only manual verification.
 """
 import json
 import os
+import sys
 
 REPO_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+_SRC_DIR = os.path.join(REPO_ROOT, "src")
+if _SRC_DIR not in sys.path:
+    sys.path.insert(0, _SRC_DIR)
+
+from config import (  # noqa: E402
+    HARD_STOP_LOSS_PCT,
+    MAX_DAILY_LOSS_PCT,
+    MAX_POSITION_CONTRACTS,
+    MARGIN_PER_CONTRACT,
+)
 DATA_DIR = os.path.join(REPO_ROOT, "data")
 
 LEDGER_PATH = os.path.join(DATA_DIR, "ledger.json")
@@ -80,5 +92,23 @@ def compute_kpis(ledger: dict, decisions: list[dict]) -> dict:
         "unrealized_pnl": unrealized_pnl,
         "realized_pnl": ledger["realized_pnl"],
         "today_pnl_pct": today_pnl_pct,
+        "daily_loss_halt": daily_loss_halt,
+    }
+
+
+def compute_risk_limits(ledger: dict, decisions: list[dict]) -> dict:
+    state = latest_portfolio_state(decisions)
+    equity = state["equity"] if state else ledger["cash"]
+    unrealized_pnl = state.get("unrealized_pnl", 0.0) if state else 0.0
+    unrealized_loss_pct = (-unrealized_pnl / equity * 100) if (equity and unrealized_pnl < 0) else 0.0
+    daily_loss_halt = state.get("daily_loss_halt", {"halted": False}) if state else {"halted": False}
+    return {
+        "hard_stop_loss_pct": HARD_STOP_LOSS_PCT * 100,
+        "unrealized_loss_pct": unrealized_loss_pct,
+        "position_contracts": ledger["position_contracts"],
+        "max_position_contracts": MAX_POSITION_CONTRACTS,
+        "margin_held": ledger["margin_held"],
+        "margin_per_contract": MARGIN_PER_CONTRACT,
+        "max_daily_loss_pct": MAX_DAILY_LOSS_PCT * 100,
         "daily_loss_halt": daily_loss_halt,
     }

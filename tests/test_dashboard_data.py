@@ -92,6 +92,7 @@ def _ledger(**overrides):
         "avg_entry_price": 0.0,
         "realized_pnl": 0.0,
         "day_start_equity": 100000.0,
+        "margin_held": 0.0,
     }
     base.update(overrides)
     return base
@@ -126,3 +127,26 @@ def test_compute_kpis_missing_unrealized_pnl_key_treated_as_zero():
     decisions = [_cycle("t1", {"equity": 99000.0})]
     kpis = dd.compute_kpis(_ledger(), decisions)
     assert kpis["unrealized_pnl"] == 0.0
+
+
+def test_compute_risk_limits_with_no_position():
+    risk = dd.compute_risk_limits(_ledger(), [])
+    assert risk["hard_stop_loss_pct"] == 3.0
+    assert risk["max_daily_loss_pct"] == 5.0
+    assert risk["max_position_contracts"] == 5
+    assert risk["margin_per_contract"] == 6800.0
+    assert risk["unrealized_loss_pct"] == 0.0
+    assert risk["daily_loss_halt"] == {"halted": False}
+
+
+def test_compute_risk_limits_computes_unrealized_loss_pct():
+    decisions = [_cycle("t1", {"equity": 98000.0, "unrealized_pnl": -2000.0})]
+    risk = dd.compute_risk_limits(_ledger(position_contracts=2, margin_held=13600.0), decisions)
+    assert round(risk["unrealized_loss_pct"], 2) == round(2000.0 / 98000.0 * 100, 2)
+    assert risk["margin_held"] == 13600.0
+
+
+def test_compute_risk_limits_positive_unrealized_pnl_is_zero_loss():
+    decisions = [_cycle("t1", {"equity": 102000.0, "unrealized_pnl": 2000.0})]
+    risk = dd.compute_risk_limits(_ledger(position_contracts=2), decisions)
+    assert risk["unrealized_loss_pct"] == 0.0
