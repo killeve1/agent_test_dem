@@ -47,3 +47,39 @@ def test_load_jsonl_skips_malformed_lines(tmp_path):
     records, skipped = dd.load_jsonl(str(path))
     assert records == [{"a": 1}, {"a": 2}]
     assert skipped == 1
+
+
+def _cycle(timestamp, portfolio_result=None):
+    tool_calls = []
+    if portfolio_result is not None:
+        tool_calls.append({"tool": "get_portfolio_state", "arguments": {}, "result": portfolio_result})
+    return {"timestamp": timestamp, "tool_calls": tool_calls}
+
+
+def test_latest_portfolio_state_returns_none_when_no_cycles_called_it():
+    decisions = [_cycle("t1"), _cycle("t2")]
+    assert dd.latest_portfolio_state(decisions) is None
+
+
+def test_latest_portfolio_state_returns_most_recent():
+    decisions = [
+        _cycle("t1", {"equity": 100000.0}),
+        _cycle("t2", {"equity": 100500.0}),
+    ]
+    assert dd.latest_portfolio_state(decisions) == {"equity": 100500.0}
+
+
+def test_get_equity_curve_skips_cycles_without_portfolio_state():
+    decisions = [
+        _cycle("t1", {"equity": 100000.0}),
+        _cycle("t2"),
+        _cycle("t3", {"equity": 100200.0}),
+    ]
+    assert dd.get_equity_curve(decisions) == [
+        {"timestamp": "t1", "equity": 100000.0},
+        {"timestamp": "t3", "equity": 100200.0},
+    ]
+
+
+def test_get_equity_curve_empty_when_no_decisions():
+    assert dd.get_equity_curve([]) == []

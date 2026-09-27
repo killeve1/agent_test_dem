@@ -46,3 +46,21 @@ def load_jsonl(path: str) -> tuple[list[dict], int]:
             except json.JSONDecodeError:
                 skipped += 1
     return records, skipped
+
+
+def latest_portfolio_state(decisions: list[dict]) -> dict | None:
+    for cycle in reversed(decisions):
+        for call in cycle.get("tool_calls", []):
+            if call.get("tool") == "get_portfolio_state":
+                return call.get("result")
+    return None
+
+
+def get_equity_curve(decisions: list[dict]) -> list[dict]:
+    points = []
+    for cycle in decisions:
+        for call in cycle.get("tool_calls", []):
+            if call.get("tool") == "get_portfolio_state" and "equity" in call.get("result", {}):
+                points.append({"timestamp": cycle.get("timestamp"), "equity": call["result"]["equity"]})
+                break
+    return points
