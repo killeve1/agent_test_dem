@@ -44,3 +44,28 @@ col3.metric("Unrealized P&L", f"${kpis['unrealized_pnl']:,.2f}")
 col4.metric("Realized P&L", f"${kpis['realized_pnl']:,.2f}")
 col5.metric("Today's P&L", f"{kpis['today_pnl_pct']:.2f}%")
 col6.metric("Daily Halt", "HALTED" if kpis["daily_loss_halt"].get("halted") else "OK")
+
+# --- Equity curve ---
+st.subheader("Equity Curve")
+curve = dd.get_equity_curve(decisions)
+if curve:
+    curve_df = pd.DataFrame(curve).set_index("timestamp")
+    st.line_chart(curve_df["equity"])
+else:
+    st.info("No equity data points logged yet.")
+
+# --- Trade log ---
+st.subheader("Trade Log")
+trades = ledger.get("trades", [])
+if trades:
+    st.dataframe(pd.DataFrame(trades), use_container_width=True)
+else:
+    st.info("No trades logged yet.")
+
+# --- Action distribution ---
+st.subheader("Action Distribution")
+dist = dd.action_distribution(ledger)
+if dist:
+    st.bar_chart(pd.Series(dist, name="count"))
+else:
+    st.info("No trades yet.")
