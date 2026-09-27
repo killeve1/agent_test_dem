@@ -150,3 +150,17 @@ def test_compute_risk_limits_positive_unrealized_pnl_is_zero_loss():
     decisions = [_cycle("t1", {"equity": 102000.0, "unrealized_pnl": 2000.0})]
     risk = dd.compute_risk_limits(_ledger(position_contracts=2), decisions)
     assert risk["unrealized_loss_pct"] == 0.0
+
+
+def test_action_distribution_counts_by_action():
+    ledger = _ledger()
+    ledger["trades"] = [
+        {"action": "hold"}, {"action": "hold"}, {"action": "open_long"},
+    ]
+    assert dd.action_distribution(ledger) == {"hold": 2, "open_long": 1}
+
+
+def test_action_distribution_empty_trades():
+    ledger = _ledger()
+    ledger["trades"] = []
+    assert dd.action_distribution(ledger) == {}

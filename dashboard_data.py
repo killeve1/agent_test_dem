@@ -112,3 +112,11 @@ def compute_risk_limits(ledger: dict, decisions: list[dict]) -> dict:
         "max_daily_loss_pct": MAX_DAILY_LOSS_PCT * 100,
         "daily_loss_halt": daily_loss_halt,
     }
+
+
+def action_distribution(ledger: dict) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for trade in ledger.get("trades", []):
+        action = trade.get("action", "unknown")
+        counts[action] = counts.get(action, 0) + 1
+    return counts
