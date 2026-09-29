@@ -387,6 +387,14 @@
       "price": 93.25,
       "confidence": null,
       "reasoning": "Current price is $93.24, down from a recent intraday peak of $96.5 after a brief rally driven by US\u2011Iran tension headlines. The spike appears to have been priced in, and subsequent news (Saudi resuming East\u2011West pipeline exports, OPEC output rise, US inventory build) is neutral to bullish for supply, reducing upside. No new high\u2011conviction supply disruption has emerged, and confidence in a further price rally is below the 0.65 threshold. Maintaining cash preserves capital."
+    },
+    {
+      "timestamp": "2026-09-29T17:33:24.501128+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 91.16,
+      "confidence": null,
+      "reasoning": "Current CL price is trending down 3% today, from ~93.4 to 91.26, and recent news shows Saudi Arabia has resumed Red Sea loadings after the East-West pipeline outage, easing the supply crunch. No new supply\u2011demand disruption presents an upside catalyst; instead, the easing supply supports further downside. Confidence in any long entry is below the required 0.65, so we stay flat."
     }
   ],
   "last_trade_at": "2026-09-18T17:21:08.513915+05:30",
