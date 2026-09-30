@@ -411,6 +411,14 @@
       "price": 89.18,
       "confidence": null,
       "reasoning": "Market has already priced in recent supply risk: crude fell from $94 to $89 after Iran's threat and US SPR release. No concrete disruption (e.g., confirmed attacks on tankers or pipeline damage) has occurred. Confidence in a supply-driven upside is below the 0.65 threshold. Maintaining cash preserves capital while awaiting clearer catalyst."
+    },
+    {
+      "timestamp": "2026-09-30T20:33:40.695848+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 91.48,
+      "confidence": null,
+      "reasoning": "Current price is modestly higher (+2% today) with no concrete supply shock. Iran's threat to attack infrastructure is rhetorical; no confirmed disruption in the Strait of Hormuz. Inventories are building per the latest EIA report, indicating demand weakness. OPEC+ is expected to keep quotas unchanged, supporting supply stability. With mixed signals and no clear catalyst materializing, confidence in a profitable long entry is below the required 0.65, so we stay flat."
     }
   ],
   "last_trade_at": "2026-09-18T17:21:08.513915+05:30",
