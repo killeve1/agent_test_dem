@@ -1,14 +1,11 @@
 name: Oil News Agent Cycle
 
 on:
-  schedule:
-    # Every 3 hours, matching the Cloudflare Worker's cron trigger (see
-    # cloudflare-worker/wrangler.toml for the Groq free-tier budget math
-    # behind this interval). This trigger is an unreliable free backstop
-    # (observed firing every 2-6 hours rather than on schedule) in case the
-    # Worker or its GitHub token lapses -- kept at the same interval as the
-    # Worker so an occasional overlap doesn't blow the daily token budget.
-    - cron: "0 */3 * * *"
+  # Scheduled cron disabled: running alongside the Cloudflare Worker's own
+  # 3h cron (cloudflare-worker/wrangler.toml) double-fired the agent cycle,
+  # blowing through the Gemini free-tier (20 req/day) and Groq (200k
+  # tokens/day) budgets hours before each day reset. The Worker is now the
+  # sole scheduler; this workflow stays available for manual runs.
   workflow_dispatch: {}  # lets you trigger a run manually from the Actions tab
 
 permissions:
