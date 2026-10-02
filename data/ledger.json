@@ -475,6 +475,22 @@
       "price": 89.43,
       "confidence": 0.0,
       "reasoning": "Portfolio remains flat in cash. WTI is under severe downward pressure today (-3.78% to $89.39) following confirmation that the EU and IEA allies are actively evaluating another coordinated emergency petroleum and diesel stockpile release under U.S. administration pressure to quell soaring fuel prices. Although background shipping friction in the Persian Gulf persists, the immediate catalyst driving market price discovery is imminent supply relief via emergency reserves. Going long into this bearish headline momentum presents an unfavorable risk-reward profile and violates capital preservation guidelines. Maintaining a 100% cash position until downside momentum stabilizes and a clear, verified asymmetric bullish supply/demand catalyst emerges."
+    },
+    {
+      "timestamp": "2026-10-02T20:37:05.115040+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 89.51,
+      "confidence": 0.2,
+      "reasoning": "Remained flat. While geopolitical tensions between the US and Iran linger, physical crude supply dynamics are softening following Saudi Arabia's restart of the East-West pipeline and resumed loadings at Yanbu, which has restored export bypass routes around Hormuz (exports recovering near 23.3 mb/d). U.S. commercial crude inventories also posted an unexpected build. WTI has exhibited severe downward momentum over the past 5 sessions (sliding from $96.54 to an intraday low of $88.06 before settling near $89.76). Without an active, confirmed physical supply disruption, opening a long position carries negative asymmetry. Capital preservation dictates remaining in cash ahead of the weekend OPEC+ meeting."
+    },
+    {
+      "timestamp": "2026-10-02T20:41:04.428065+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 89.58,
+      "confidence": null,
+      "reasoning": "Current WTI price is $89.61, down ~5% over the past 5 days after earlier spikes to $94. Current news shows mixed signals: Houthi attacks on Saudi infrastructure raise supply risk, but US\u2011Iran talks to reopen the Strait of Hormuz have eased concerns, causing prices to fall. No decisive, confirmed disruption is ongoing, and price appears to have priced in earlier risk. Confidence in a new upside move is below the 0.65 threshold, so we stay flat."
     }
   ],
   "last_trade_at": "2026-09-18T17:21:08.513915+05:30",
