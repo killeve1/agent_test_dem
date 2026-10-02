@@ -459,6 +459,14 @@
       "price": 92.85,
       "confidence": null,
       "reasoning": "Current CL=F price is $92.85, up ~4% today with a recent intra\u2011day high of $93.68, indicating the market has already priced in the latest supply concerns. News shows ongoing Houthi attacks on Saudi oil infrastructure, but OPEC+ has left output unchanged, suggesting no immediate offset. Given the price spike and our capital\u2011preservation mandate, confidence in a further upside outweighing risk of a pull\u2011back is below the 0.65 threshold, so we stay flat."
+    },
+    {
+      "timestamp": "2026-10-02T14:31:45.691991+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 89.14,
+      "confidence": 0,
+      "reasoning": "Market is unwinding geopolitical risk premiums as Persian Gulf crude exports have recovered to ~98% of pre-war levels. Crude futures (CL=F) are under heavy downward pressure, sliding from $92.70+ to $89.15 on high selling volume. With no fresh bullish supply shock or demand catalyst to warrant entering long, capital preservation dictates remaining flat in cash."
     }
   ],
   "last_trade_at": "2026-09-18T17:21:08.513915+05:30",
