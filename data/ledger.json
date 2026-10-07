@@ -723,9 +723,17 @@
       "price": 88.24,
       "confidence": 0,
       "reasoning": "Portfolio remains flat in cash. Oil prices have slid -4.7% over the past 5 days and -2.2% intraday to $88.20/bbl as bearish macro factors weigh on the market\u2014primarily the G-7 agreement to release 100 million barrels of emergency crude and diesel reserves, alongside rebounding Gulf export flows despite lingering Hormuz friction. Iraq's 14.5% dinar devaluation underscores fiscal strain from SOMO discounts rather than an immediate physical supply shortfall. With negative price momentum, absence of a fresh bullish supply shock, and SPR release headwinds, risk/reward for opening a long position is unfavorable. Capital preservation dictates remaining flat."
+    },
+    {
+      "timestamp": "2026-10-08T02:36:20.989355+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 88.89,
+      "confidence": null,
+      "reasoning": "Recent Houthi attacks on Saudi Aramco facilities (e.g., Oct 5 incident) raise supply\u2011disruption concerns, but WTI crude has already fallen ~4% over the past three days to $88.9, with price action showing a decline from the recent high of $92.74. The market appears to have priced in the risk, and without clearer evidence of a sustained supply shock, confidence in a profitable long entry is below the 0.65 threshold. Maintaining cash preserves capital."
     }
   ],
   "last_trade_at": "2026-09-18T17:21:08.513915+05:30",
-  "day_start_date": "2026-10-07",
+  "day_start_date": "2026-10-08",
   "day_start_equity": 76180.00000000003
 }
