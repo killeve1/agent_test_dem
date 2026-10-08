@@ -731,6 +731,14 @@
       "price": 88.89,
       "confidence": null,
       "reasoning": "Recent Houthi attacks on Saudi Aramco facilities (e.g., Oct 5 incident) raise supply\u2011disruption concerns, but WTI crude has already fallen ~4% over the past three days to $88.9, with price action showing a decline from the recent high of $92.74. The market appears to have priced in the risk, and without clearer evidence of a sustained supply shock, confidence in a profitable long entry is below the 0.65 threshold. Maintaining cash preserves capital."
+    },
+    {
+      "timestamp": "2026-10-08T05:37:04.447872+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 88.97,
+      "confidence": null,
+      "reasoning": "Market is down ~3.9% over 5 days, CL=F at $88.98 near low of range. Recent headlines about Houthi attacks on Saudi pipeline present supply risk but price has already slid, indicating risk priced in. No confirmed imminent supply disruption; confidence for a new long is below 0.65. Staying flat preserves capital."
     }
   ],
   "last_trade_at": "2026-09-18T17:21:08.513915+05:30",
