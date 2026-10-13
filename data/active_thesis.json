@@ -1,10 +1,17 @@
 {
-  "active": false,
-  "catalyst": null,
-  "invalidation_criteria": null,
-  "monitoring_horizon": null,
-  "entered_at": null,
-  "price_at_entry": null,
-  "last_updated": null,
-  "notes": []
+  "active": true,
+  "catalyst": "Shipping attacks in the Strait of Hormuz and Hurricane Isaias causing ~25% Gulf production shutdown, tightening global oil supply",
+  "invalidation_criteria": "OPEC+ announces increased output or Gulf production resumes to pre\u2011hurricane levels, or shipping attacks cease and Hormuz flows normalize, pushing price below $90",
+  "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
+  "entered_at": "2026-10-13T05:35:15.776452+05:30",
+  "price_at_entry": 93.17,
+  "last_updated": "2026-10-13T05:35:15.776452+05:30",
+  "notes": [
+    {
+      "timestamp": "2026-10-13T05:35:15.776462+05:30",
+      "action": "open_long",
+      "price": 93.17,
+      "note": "Thesis intact: supply risk remains high; price pulled back from intraday high, offering entry."
+    }
+  ]
 }
