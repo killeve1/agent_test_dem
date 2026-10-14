@@ -1,11 +1,11 @@
 {
   "active": true,
-  "catalyst": "Shipping attacks in the Strait of Hormuz and Hurricane Isaias causing ~25% Gulf production shutdown, tightening global oil supply",
+  "catalyst": "Shipping attacks in Strait of Hormuz and Hurricane Isaias continuing to limit Gulf output",
   "invalidation_criteria": "OPEC+ announces increased output or Gulf production resumes to pre\u2011hurricane levels, or shipping attacks cease and Hormuz flows normalize, pushing price below $90",
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-14T17:35:53.453967+05:30",
+  "last_updated": "2026-10-14T20:36:08.613310+05:30",
   "notes": [
     {
       "timestamp": "2026-10-13T05:35:15.776462+05:30",
@@ -54,6 +54,12 @@
       "action": "add",
       "price": 95.9,
       "note": "Thesis intact and strengthened: attacks persist, OPEC+ unchanged, hurricane threat ongoing; price up to $95.9."
+    },
+    {
+      "timestamp": "2026-10-14T20:36:08.613303+05:30",
+      "action": "add",
+      "price": 94.93,
+      "note": "Thesis remains intact; shipping attacks persist, OPEC+ unchanged, hurricane threat ongoing, limited Gulf production recovery; price well above $90."
     }
   ]
 }
