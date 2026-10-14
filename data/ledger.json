@@ -1002,9 +1002,17 @@
       "price": 94.1,
       "confidence": null,
       "reasoning": "Thesis intact: ongoing Hormuz tanker attacks, OPEC+ output unchanged, Hurricane Isaias still causing Gulf production shut\u2011ins; price stays above $90 (now $94.1) and has risen since entry, indicating risk of a pull\u2011back if disruptions ease. No invalidation criteria met."
+    },
+    {
+      "timestamp": "2026-10-14T14:31:57.816569+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 94.46,
+      "confidence": 0.6,
+      "reasoning": "Re-evaluated active thesis: supply disruptions remain severe and have escalated. Iranian officials publicly confirmed plans to intensify tanker attacks in the Strait of Hormuz using new tactics, driving global shipping disruption and record tanker freight rates. Additionally, approximately 30% of U.S. Gulf of Mexico oil production remains offline following Hurricane Isaias. OPEC+ output policy remains unchanged. Crude futures are trading at $94.50, well above our $93.17 entry and firmly above our $90 invalidation threshold. However, with crude currently consolidating near the upper end of its intraday range ($94.01-$94.85) and headlines already circulating, adding risk here presents adverse risk/reward versus holding our existing winning position. We maintain our open long position in alignment with our capital preservation mandate."
     }
   ],
   "last_trade_at": "2026-10-13T05:35:15.775253+05:30",
-  "day_start_date": "2026-10-13",
-  "day_start_equity": 76180.00000000003
+  "day_start_date": "2026-10-14",
+  "day_start_equity": 77510.00000000003
 }
