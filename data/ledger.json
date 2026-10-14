@@ -1,9 +1,9 @@
 {
-  "cash": 69380.00000000003,
-  "position_contracts": 1,
-  "avg_entry_price": 93.17,
-  "avg_confidence": 0.71,
-  "margin_held": 6800.0,
+  "cash": 62580.00000000003,
+  "position_contracts": 2,
+  "avg_entry_price": 94.535,
+  "avg_confidence": 0.705,
+  "margin_held": 13600.0,
   "realized_pnl": -23819.999999999978,
   "trades": [
     {
@@ -1010,9 +1010,24 @@
       "price": 94.46,
       "confidence": 0.6,
       "reasoning": "Re-evaluated active thesis: supply disruptions remain severe and have escalated. Iranian officials publicly confirmed plans to intensify tanker attacks in the Strait of Hormuz using new tactics, driving global shipping disruption and record tanker freight rates. Additionally, approximately 30% of U.S. Gulf of Mexico oil production remains offline following Hurricane Isaias. OPEC+ output policy remains unchanged. Crude futures are trading at $94.50, well above our $93.17 entry and firmly above our $90 invalidation threshold. However, with crude currently consolidating near the upper end of its intraday range ($94.01-$94.85) and headlines already circulating, adding risk here presents adverse risk/reward versus holding our existing winning position. We maintain our open long position in alignment with our capital preservation mandate."
+    },
+    {
+      "timestamp": "2026-10-14T17:35:53.452438+05:30",
+      "action": "add",
+      "quantity": 1,
+      "price": 95.9,
+      "confidence": 0.7,
+      "reasoning": "Recent news confirms continued Strait of Hormuz tanker attacks (Oct 8-12) and Hurricane Isaias still threatening Gulf oil production (shutdown ~63%). OPEC+ has delayed any output increase, extending cuts. Crude price has risen to $95.9, well above the $90 invalidation threshold, indicating tightening supply remains priced in. Thesis intact and strengthened; confidence sufficient to increase exposure.",
+      "sizing_detail": {
+        "quantity": 1,
+        "risk_dollars": 6628.44,
+        "stop_distance": 5.8735,
+        "risk_per_contract": 5873.55,
+        "capped_by_max_position": false
+      }
     }
   ],
-  "last_trade_at": "2026-10-13T05:35:15.775253+05:30",
+  "last_trade_at": "2026-10-14T17:35:53.452432+05:30",
   "day_start_date": "2026-10-14",
   "day_start_equity": 77510.00000000003
 }
