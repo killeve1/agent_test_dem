@@ -1064,9 +1064,25 @@
       "price": 98.82,
       "confidence": 0.75,
       "reasoning": "Active thesis remains valid: Middle East shipping and infrastructure risks persist, OPEC+ maintains current quotas, and WTI has rallied strongly to $98.76 (well above the $90 invalidation level). While Hurricane Isaias shut-ins in the Gulf are easing toward pre-storm levels next week, geopolitical risks continue to support crude. However, with crude testing period highs near $99 and speculative length stretched, adding to the position here offers unfavorable risk/reward. Maintaining the existing 3-contract long position to let profits run."
+    },
+    {
+      "timestamp": "2026-10-17T02:32:06.690007+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 98.92,
+      "confidence": 0.8,
+      "reasoning": "Active thesis remains intact and fundamentally strengthened: Strait of Hormuz shipping disruptions persist with severe tanker attack escalations, U.S. commercial crude stocks saw a massive 11.12M barrel draw, and OPEC+ has reaffirmed steady output targets for November. The invalidation threshold ($90) remains distant, with WTI trading firmly at $98.90. Following a strong intraday rally towards $99.34 and new SPR exchange solicitations from the DOE, crude is testing major resistance near $100. Rather than adding at the top of an extended move, we hold our current 3-contract long position to capture continued upside while preserving accumulated gains."
+    },
+    {
+      "timestamp": "2026-10-17T02:35:54.683179+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 98.93,
+      "confidence": null,
+      "reasoning": "Current CL=F price is $98.93, well above the $90 invalidation threshold. Recent news confirms continued Strait of Hormuz tanker attacks and no OPEC+ output increase; Gulf of Mexico production remains partially shut-in with no reports of full pre\u2011hurricane recovery. Thus the original supply\u2011risk thesis remains intact and arguably strengthened as price consolidates near $99. No new catalyst justifies additional exposure at a potential resistance level."
     }
   ],
   "last_trade_at": "2026-10-14T20:36:08.611963+05:30",
-  "day_start_date": "2026-10-16",
-  "day_start_equity": 81680.00000000001
+  "day_start_date": "2026-10-17",
+  "day_start_equity": 88910.0
 }
