@@ -5,7 +5,7 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-17T05:34:37.536735+05:30",
+  "last_updated": "2026-10-17T08:36:49.866656+05:30",
   "notes": [
     {
       "timestamp": "2026-10-13T05:35:15.776462+05:30",
@@ -96,6 +96,12 @@
       "action": "hold",
       "price": 99.04,
       "note": "Thesis remains intact; no invalidation criteria met; continue monitoring OPEC+ statements and Hormuz attack developments."
+    },
+    {
+      "timestamp": "2026-10-17T08:36:49.866646+05:30",
+      "action": "hold",
+      "price": 99.04,
+      "note": "Thesis intact and strengthened: attacks persist, OPEC+ unchanged, hurricane disruption ongoing; price remains far above $90 invalidation level."
     }
   ]
 }
