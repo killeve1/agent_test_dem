@@ -5,14 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-18T08:36:40.298932+05:30",
+  "last_updated": "2026-10-18T11:36:40.139422+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-13T20:36:04.987491+05:30",
-      "action": "hold",
-      "price": 93.8,
-      "note": "Thesis intact: OPEC+ unchanged, Hormuz attacks ongoing, Hurricane Isaias still a threat; price remains above $90."
-    },
     {
       "timestamp": "2026-10-13T23:36:22.936810+05:30",
       "action": "hold",
@@ -126,6 +120,12 @@
       "action": "hold",
       "price": 101.41,
       "note": "Thesis still intact: attacks persist, OPEC+ unchanged, hurricane impact ongoing; price far above $90."
+    },
+    {
+      "timestamp": "2026-10-18T11:36:40.139412+05:30",
+      "action": "hold",
+      "price": 99.02,
+      "note": "Thesis remains intact and strengthened; no invalidation criteria met; price above $90; OPEC+ unchanged; attacks persist; hurricane impact ongoing."
     }
   ]
 }
