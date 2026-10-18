@@ -5,14 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-18T14:31:43.182694+05:30",
+  "last_updated": "2026-10-18T17:33:24.669917+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-14T14:31:57.818060+05:30",
-      "action": "hold",
-      "price": 94.46,
-      "note": "Thesis intact and strengthened: Iranian officials confirmed plans to intensify Strait of Hormuz tanker attacks; Gulf of Mexico shut-ins persist near 30%; OPEC+ unchanged; crude trades at $94.50, well above the $90 invalidation level. Holding long position."
-    },
     {
       "timestamp": "2026-10-14T17:35:53.453936+05:30",
       "action": "add",
@@ -126,6 +120,12 @@
       "action": "hold",
       "price": 99.02,
       "note": "Thesis intact: WTI holds strong at $99.02, comfortably above the $90 invalidation mark. Supply disruption catalysts remain in effect, and no invalidation conditions have occurred. Circuit breaker is active; holding long position."
+    },
+    {
+      "timestamp": "2026-10-18T17:33:24.669908+05:30",
+      "action": "hold",
+      "price": 99.02,
+      "note": "Thesis intact: WTI crude trades at $99.02, well above the $90 invalidation threshold. Supply disruption catalysts remain in effect, no invalidation criteria have been met, and the daily loss circuit breaker remains active. Holding 3-contract long position."
     }
   ]
 }
