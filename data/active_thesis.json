@@ -5,20 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-19T20:35:12.065206+05:30",
+  "last_updated": "2026-10-19T23:36:45.023886+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-17T14:31:51.290026+05:30",
-      "action": "hold",
-      "price": 101.41,
-      "note": "Thesis intact: Strait of Hormuz tanker escalation and steady OPEC+ output continue to support crude at $101.41, far above the $90 invalidation threshold. Maintaining existing 3-contract long position."
-    },
-    {
-      "timestamp": "2026-10-17T17:32:28.719508+05:30",
-      "action": "hold",
-      "price": 101.41,
-      "note": "Thesis intact: Strait of Hormuz tanker attacks and mine strikes keep Middle East supply risk acute; OPEC+ output remains steady; crude trades at $101.41, far above our $90 invalidation mark. Maintaining 3-contract long position."
-    },
     {
       "timestamp": "2026-10-17T20:31:55.047718+05:30",
       "action": "hold",
@@ -126,6 +114,18 @@
       "action": "hold",
       "price": 97.74,
       "note": "Thesis intact: No OPEC+ output increase, Gulf output still limited, Hormuz attacks ongoing; price > $90."
+    },
+    {
+      "timestamp": "2026-10-19T23:32:34.764762+05:30",
+      "action": "hold",
+      "price": 99.61,
+      "note": "Thesis intact and reinforced: Strait of Hormuz shipping disruptions persist with confirmed vessel sinkings and mine attacks, keeping tanker freight at record highs and regional transit constrained; Gulf shut-ins remain a factor; OPEC+ policy is unchanged; and WTI has rebounded to $99.64, far exceeding the $90 invalidation level. Holding 3-contract long position."
+    },
+    {
+      "timestamp": "2026-10-19T23:36:45.023869+05:30",
+      "action": "hold",
+      "price": 99.41,
+      "note": "Thesis remains intact and strengthened: supply disruption catalysts persist and price stays high."
     }
   ]
 }
