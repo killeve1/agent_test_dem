@@ -5,14 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-19T23:36:45.023886+05:30",
+  "last_updated": "2026-10-20T02:37:12.933728+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-17T20:31:55.047718+05:30",
-      "action": "hold",
-      "price": 101.41,
-      "note": "Thesis intact and reinforced: Strait of Hormuz tanker attacks have intensified with vessel traffic down 30%, Houthi strikes targeted Saudi export infrastructure, and EIA inventories drew over 8M barrels. With WTI holding at $101.41 far above the $90 invalidation threshold, we maintain our 3-contract long position without adding at extended levels."
-    },
     {
       "timestamp": "2026-10-17T23:37:26.378118+05:30",
       "action": "hold",
@@ -126,6 +120,12 @@
       "action": "hold",
       "price": 99.41,
       "note": "Thesis remains intact and strengthened: supply disruption catalysts persist and price stays high."
+    },
+    {
+      "timestamp": "2026-10-20T02:37:12.933720+05:30",
+      "action": "hold",
+      "price": 98.28,
+      "note": "Thesis intact: supply disruption catalysts (Hormuz attacks, Hurricane Isaias, OPEC+ output freeze) persist; price remains > $90."
     }
   ]
 }
