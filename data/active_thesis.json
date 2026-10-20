@@ -5,14 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-20T08:36:03.573172+05:30",
+  "last_updated": "2026-10-20T14:37:02.773186+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-18T02:35:21.295334+05:30",
-      "action": "hold",
-      "price": 101.41,
-      "note": "Thesis remains intact and strengthened; price well above $90, no invalidation criteria met."
-    },
     {
       "timestamp": "2026-10-18T05:36:26.688724+05:30",
       "action": "hold",
@@ -126,6 +120,12 @@
       "action": "hold",
       "price": 98.65,
       "note": "Thesis intact and strengthened: shipping attacks persist, OPEC+ unchanged, Hurricane Isaias intensifying; price > $90. No invalidation criteria met."
+    },
+    {
+      "timestamp": "2026-10-20T14:37:02.773152+05:30",
+      "action": "hold",
+      "price": 100.28,
+      "note": "Thesis intact and reinforced: Hormuz maritime security risks and tanker disruptions continue, Hurricane Isaias shut-ins persist in the Gulf of Mexico (~71% offline), and OPEC+ output remains frozen. Crude price at $100.24 is well above the $90 invalidation level. Holding 3-contract long position."
     }
   ]
 }
