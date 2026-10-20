@@ -1,9 +1,9 @@
 {
-  "cash": 48980.00000000003,
-  "position_contracts": 4,
-  "avg_entry_price": 96.1525,
-  "avg_confidence": 0.71,
-  "margin_held": 27200.0,
+  "cash": 42180.00000000003,
+  "position_contracts": 5,
+  "avg_entry_price": 96.562,
+  "avg_confidence": 0.712,
+  "margin_held": 34000.0,
   "realized_pnl": -23819.999999999978,
   "trades": [
     {
@@ -1335,9 +1335,24 @@
       "price": 97.8,
       "confidence": null,
       "reasoning": "Latest price $97.89 remains well above the $90 invalidation level. Recent news confirms OPEC+ kept output unchanged, shipping attacks in the Strait of Hormuz continue at high intensity, and Hurricane Isaias still limits Gulf output. No invalidation criteria have been met; the thesis remains intact and is reinforced by continued supply constraints."
+    },
+    {
+      "timestamp": "2026-10-21T02:38:27.262661+05:30",
+      "action": "add",
+      "quantity": 1,
+      "price": 98.2,
+      "confidence": 0.72,
+      "reasoning": "Current WTI price at $98.24 remains well above the $90 invalidation level. Recent searches confirm ongoing Hormuz shipping attacks and that OPEC+ is expected to keep output steady. Hurricane Isaias continues to affect Gulf production. No invalidation events observed, thesis remains intact and strengthened.",
+      "sizing_detail": {
+        "quantity": 1,
+        "risk_dollars": 7289.57,
+        "stop_distance": 6.4457,
+        "risk_per_contract": 6445.65,
+        "capped_by_max_position": false
+      }
     }
   ],
-  "last_trade_at": "2026-10-20T17:36:32.198934+05:30",
-  "day_start_date": "2026-10-20",
-  "day_start_equity": 87320.0
+  "last_trade_at": "2026-10-21T02:38:27.262656+05:30",
+  "day_start_date": "2026-10-21",
+  "day_start_equity": 84530.0
 }

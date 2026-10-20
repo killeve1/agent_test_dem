@@ -5,14 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-20T23:38:58.612021+05:30",
+  "last_updated": "2026-10-21T02:38:27.264519+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-18T14:31:43.182687+05:30",
-      "action": "hold",
-      "price": 99.02,
-      "note": "Thesis intact: WTI holds strong at $99.02, comfortably above the $90 invalidation mark. Supply disruption catalysts remain in effect, and no invalidation conditions have occurred. Circuit breaker is active; holding long position."
-    },
     {
       "timestamp": "2026-10-18T17:33:24.669908+05:30",
       "action": "hold",
@@ -126,6 +120,12 @@
       "action": "hold",
       "price": 97.8,
       "note": "Thesis intact: supply disruption catalysts persist; price > $90; no OPEC+ output increase; Hormuz attacks ongoing; Hurricane Isaias still limiting Gulf output."
+    },
+    {
+      "timestamp": "2026-10-21T02:38:27.264506+05:30",
+      "action": "add",
+      "price": 98.2,
+      "note": "Thesis intact and reinforced: price > $90, attacks persist, OPEC+ output unchanged, hurricane impact ongoing."
     }
   ]
 }
