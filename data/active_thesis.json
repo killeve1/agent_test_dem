@@ -5,14 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-21T17:31:37.606320+05:30",
+  "last_updated": "2026-10-21T20:32:02.641528+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-18T23:32:20.198729+05:30",
-      "action": "hold",
-      "price": 99.02,
-      "note": "Thesis intact: WTI crude trades at $99.02, holding well above the $90 invalidation threshold. Core supply disruption catalysts remain in effect, no invalidation criteria have materialized, and the daily loss circuit breaker remains active. Maintaining the 3-contract long position."
-    },
     {
       "timestamp": "2026-10-19T02:36:08.199089+05:30",
       "action": "hold",
@@ -126,6 +120,12 @@
       "action": "hold",
       "price": 98.66,
       "note": "Thesis intact and reinforced: Hormuz disruptions and tanker freight shocks persist, Gulf supply remains constrained, OPEC+ policy holds, and crude price remains well above the $90 invalidation level. Position is at maximum size (5 contracts); holding."
+    },
+    {
+      "timestamp": "2026-10-21T20:32:02.641518+05:30",
+      "action": "hold",
+      "price": 97.72,
+      "note": "Thesis intact: WTI crude trades at $97.75, comfortably above the $90 invalidation threshold. EIA confirmed a 3.1M bbl draw in US crude stockpiles (3% below the 5-year average). Disruption premiums remain supported by elevated tanker freight costs and steady OPEC+ output policies. Position is at the 5-contract cap; maintaining hold."
     }
   ]
 }
