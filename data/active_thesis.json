@@ -5,14 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-21T20:32:02.641528+05:30",
+  "last_updated": "2026-10-21T23:33:32.816247+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-19T02:36:08.199089+05:30",
-      "action": "hold",
-      "price": 99.02,
-      "note": "Thesis remains intact; no invalidation criteria met. Continue monitoring Hormuz attacks, OPEC+ statements, and Hurricane Isaias track over the next days."
-    },
     {
       "timestamp": "2026-10-19T05:35:46.934346+05:30",
       "action": "hold",
@@ -126,6 +120,12 @@
       "action": "hold",
       "price": 97.72,
       "note": "Thesis intact: WTI crude trades at $97.75, comfortably above the $90 invalidation threshold. EIA confirmed a 3.1M bbl draw in US crude stockpiles (3% below the 5-year average). Disruption premiums remain supported by elevated tanker freight costs and steady OPEC+ output policies. Position is at the 5-contract cap; maintaining hold."
+    },
+    {
+      "timestamp": "2026-10-21T23:33:32.816238+05:30",
+      "action": "hold",
+      "price": 96.94,
+      "note": "Thesis intact and reinforced: OPEC+ output unchanged, Hormuz attacks ongoing, Hurricane Isaias still threatening Gulf production; price > $90."
     }
   ]
 }
