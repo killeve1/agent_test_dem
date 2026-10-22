@@ -5,14 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-22T14:32:47.633888+05:30",
+  "last_updated": "2026-10-22T17:43:59.098968+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-19T20:35:12.065192+05:30",
-      "action": "hold",
-      "price": 97.74,
-      "note": "Thesis intact: No OPEC+ output increase, Gulf output still limited, Hormuz attacks ongoing; price > $90."
-    },
     {
       "timestamp": "2026-10-19T23:32:34.764762+05:30",
       "action": "hold",
@@ -126,6 +120,12 @@
       "action": "hold",
       "price": 99.89,
       "note": "Thesis intact and reinforced: Iranian floating storage drained to near zero under tightened US naval blockade, Strait of Hormuz disruptions and tanker security risks remain active, Gulf output remains constrained, and OPEC+ policy holds steady. WTI is strong at $99.90, far above the $90 invalidation level. Holding maximum 5-contract long position."
+    },
+    {
+      "timestamp": "2026-10-22T17:43:59.098959+05:30",
+      "action": "hold",
+      "price": 99.49,
+      "note": "Thesis intact and reinforced: Persian Gulf maritime attacks escalated further with IRGC claiming 7 vessels hit or mined west of Hormuz and in the northern Gulf. Regional disruption risk amplified by Houthi strikes near Shaybah. WTI trades robustly near $99.34, far above the $90 invalidation criteria. Position at 5-contract maximum; holding."
     }
   ]
 }
