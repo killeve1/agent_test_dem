@@ -5,14 +5,8 @@
   "monitoring_horizon": "Next 3\u20115 days for hurricane track and attack reports; OPEC meeting this week",
   "entered_at": "2026-10-13T05:35:15.776452+05:30",
   "price_at_entry": 93.17,
-  "last_updated": "2026-10-22T05:36:00.468005+05:30",
+  "last_updated": "2026-10-22T08:35:33.703305+05:30",
   "notes": [
-    {
-      "timestamp": "2026-10-19T11:31:44.372037+05:30",
-      "action": "hold",
-      "price": 97.33,
-      "note": "Thesis intact: Hormuz transit remains severely disrupted (down to 8.5M bpd from 20M bpd), price at $97.34 remains well above the $90 invalidation threshold, and no invalidation conditions have occurred. Daily circuit breaker remains active. Maintaining 3-contract long position."
-    },
     {
       "timestamp": "2026-10-19T11:35:57.206569+05:30",
       "action": "hold",
@@ -126,6 +120,12 @@
       "action": "hold",
       "price": 98.01,
       "note": "Thesis intact and reinforced: OPEC+ unchanged output, Hormuz attacks persist (highest week since conflict start), Hurricane Isaias still limiting Gulf production, price > $90."
+    },
+    {
+      "timestamp": "2026-10-22T08:35:33.703297+05:30",
+      "action": "hold",
+      "price": 98.37,
+      "note": "Thesis remains intact and reinforced; disruptions persist, price > $90."
     }
   ]
 }
