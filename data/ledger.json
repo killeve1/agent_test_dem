@@ -1406,6 +1406,22 @@
       "price": 98.37,
       "confidence": null,
       "reasoning": "All invalidation criteria remain unmet: OPEC+ output unchanged, Gulf production still limited by Hurricane Isaias, and Hormuz shipping attacks continue at record levels. Crude price stays above $90 (current $98.28), supporting the disruption premium. Position is at the 5\u2011contract cap, so no further scaling is possible."
+    },
+    {
+      "timestamp": "2026-10-22T11:36:46.605467+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 99.26,
+      "confidence": 0.85,
+      "reasoning": "Thesis is strongly intact and reinforced. Houthi strikes have escalated directly targeting Saudi oil infrastructure (Shaybah oil field) and airports (Dammam), causing the US State Department to order non-emergency personnel out of Saudi Arabia. Brent has surged above $111/bbl while WTI trades at $99.14\u2013$99.20, well above the $90 invalidation threshold. With the portfolio already at the maximum capacity of 5 contracts, we maintain our full long position to ride the asymmetric upside."
+    },
+    {
+      "timestamp": "2026-10-22T11:40:28.000623+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 99.26,
+      "confidence": null,
+      "reasoning": "Current CL price $99.24 remains well above the $90 invalidation threshold. Recent news confirms continued attacks in the Strait of Hormuz and no change in OPEC+ output policy, while Hurricane Isaias remains active and limiting Gulf output. No invalidation events observed; thesis remains intact and appears reinforced."
     }
   ],
   "last_trade_at": "2026-10-21T02:38:27.262656+05:30",
