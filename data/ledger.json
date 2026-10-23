@@ -1633,6 +1633,14 @@
       "price": 100.26,
       "confidence": null,
       "reasoning": "Recent reports (Reuters Oct 6, Seeking Alpha Oct 17) show Saudi East-West pipeline operating at ~5.8M b/d (~80% of capacity), indicating partial restoration but not full. No confirmation of full pipeline restoration and price remains above $95 (current $100.28). No new attacks reported. Invalidation criteria not met, so thesis remains intact but supply risk has eased slightly, reducing upside. Confidence to add is below 0.65, so hold."
+    },
+    {
+      "timestamp": "2026-10-23T17:46:00.087904+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 101.08,
+      "confidence": 0.7,
+      "reasoning": "Re-evaluating active thesis: Saudi East-West pipeline and Shaybah supply disruption risks persist. Invalidation criteria (Aramco confirming full restoration, no further attacks, and WTI closing below $95) have not been met. Recent reports confirm Aramco is exploring foreign strategic oil storage to manage supply commitments, and regional conflict risks remain elevated. Crude prices are holding steady above $100 ($100.97 vs entry at $99.92), generating positive unrealized PnL. No new acute escalation justifies pyramiding at resistance near $101.50, so maintaining position size and holding is optimal."
     }
   ],
   "last_trade_at": "2026-10-23T08:39:23.295942+05:30",
