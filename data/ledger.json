@@ -1649,6 +1649,14 @@
       "price": 102.32,
       "confidence": null,
       "reasoning": "Current CL price $102.3 remains well above the $95 invalidation level. No news confirming full restoration of the East-West pipeline; latest reports indicate only partial capacity (~50-80%) and ongoing Houthi attacks. OPEC+ production hike is announced but not yet effective. Thesis remains intact; no invalidation criteria met."
+    },
+    {
+      "timestamp": "2026-10-24T05:38:09.282884+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 103.44,
+      "confidence": null,
+      "reasoning": "Latest Reuters and other news indicate the Saudi East-West pipeline remains only partially restored (~40-80% capacity) with no confirmation of full restoration; Houthi attacks continue to pose supply risk. WTI/CL price is at $103.44, well above the $95 invalidation threshold, and the thesis conditions (no full restoration, price above $95) remain intact. No new catalyst invalidates the trade, but the price rise may already reflect much of the risk premium, so confidence to add is below the required 0.65. Maintaining the position while monitoring for restoration announcements or OPEC decisions is appropriate."
     }
   ],
   "last_trade_at": "2026-10-23T08:39:23.295942+05:30",
