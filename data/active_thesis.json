@@ -5,7 +5,7 @@
   "monitoring_horizon": "Next 5-7 days: watch Saudi ministry updates, Aramco statements, and OPEC meeting outcomes",
   "entered_at": "2026-10-23T08:39:23.298058+05:30",
   "price_at_entry": 99.92,
-  "last_updated": "2026-10-24T17:37:34.074805+05:30",
+  "last_updated": "2026-10-24T20:47:08.872758+05:30",
   "notes": [
     {
       "timestamp": "2026-10-23T08:39:23.298071+05:30",
@@ -54,6 +54,12 @@
       "action": "hold",
       "price": 103.27,
       "note": "Thesis remains intact: East-West pipeline remains partially disrupted with no confirmation of full restoration, regional infrastructure threats persist, and WTI is trading strongly at $103.27 (well above the $95 invalidation price threshold). Continuing to hold the long position while monitoring Saudi official statements and OPEC developments."
+    },
+    {
+      "timestamp": "2026-10-24T20:47:08.872751+05:30",
+      "action": "hold",
+      "price": 103.27,
+      "note": "Thesis remains intact. Invalidation criteria unmet: Aramco has not confirmed full pipeline restoration, and WTI trades at $103.27 (substantially above the $95 threshold). Ongoing monitoring of Saudi ministry/Aramco statements and OPEC developments continues over the 5-7 day horizon."
     }
   ]
 }
