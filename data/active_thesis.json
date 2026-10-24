@@ -5,7 +5,7 @@
   "monitoring_horizon": "Next 5-7 days: watch Saudi ministry updates, Aramco statements, and OPEC meeting outcomes",
   "entered_at": "2026-10-23T08:39:23.298058+05:30",
   "price_at_entry": 99.92,
-  "last_updated": "2026-10-24T05:38:09.284706+05:30",
+  "last_updated": "2026-10-24T14:38:37.056271+05:30",
   "notes": [
     {
       "timestamp": "2026-10-23T08:39:23.298071+05:30",
@@ -42,6 +42,12 @@
       "action": "hold",
       "price": 103.44,
       "note": "Thesis still intact: pipeline not fully restored, price above $95, no new attacks; continue monitoring Saudi ministry updates and OPEC outcomes over next 5-7 days."
+    },
+    {
+      "timestamp": "2026-10-24T14:38:37.056263+05:30",
+      "action": "hold",
+      "price": 103.27,
+      "note": "Thesis still intact; pipeline operating at ~5.8\u202fM bpd (~55% of full capacity), no full restoration confirmation, price > $95, no new attacks. Continue monitoring Saudi ministry updates, Aramco statements, and upcoming OPEC decisions over the next 5\u20117 days."
     }
   ]
 }
