@@ -1696,6 +1696,14 @@
         "risk_per_contract": 6572.1,
         "capped_by_max_position": false
       }
+    },
+    {
+      "timestamp": "2026-10-25T23:38:41.975525+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 103.27,
+      "confidence": null,
+      "reasoning": "No new information confirming full pipeline restoration; price remains above $95, and recent headlines only mention ongoing attacks or claims without resolution. Invalidation criteria not met, so thesis remains intact."
     }
   ],
   "last_trade_at": "2026-10-24T23:38:24.921461+05:30",
