@@ -1,2 +1,3 @@
 {"timestamp": "2026-09-18T17:21:08.513915+05:30", "avg_confidence": 0.756, "realized_pnl": -23820.0, "won": false, "contracts": 5, "avg_entry_price": 100.91, "close_price": 96.15}
 {"timestamp": "2026-10-23T02:36:34.432194+05:30", "avg_confidence": 0.712, "realized_pnl": 12640.0, "won": true, "contracts": 5, "avg_entry_price": 96.56, "close_price": 99.09}
+{"timestamp": "2026-10-26T08:31:49.299465+05:30", "avg_confidence": 0.703, "realized_pnl": -3220.0, "won": false, "contracts": 3, "avg_entry_price": 102.15, "close_price": 101.08}

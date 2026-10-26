@@ -1,10 +1,10 @@
 {
-  "cash": 68420.00000000006,
-  "position_contracts": 3,
-  "avg_entry_price": 102.15333333333332,
-  "avg_confidence": 0.7033333333333333,
-  "margin_held": 20400.0,
-  "realized_pnl": -11179.999999999949,
+  "cash": 85600.00000000009,
+  "position_contracts": 0,
+  "avg_entry_price": 0.0,
+  "avg_confidence": 0.0,
+  "margin_held": 0.0,
+  "realized_pnl": -14399.99999999992,
   "trades": [
     {
       "timestamp": "2026-09-12T14:50:56.021177+05:30",
@@ -1719,9 +1719,101 @@
         "risk_per_contract": 6572.1,
         "capped_by_max_position": false
       }
+    },
+    {
+      "timestamp": "2026-10-26T08:31:49.299550+05:30",
+      "action": "close",
+      "quantity": 3,
+      "price": 101.08,
+      "confidence": null,
+      "reasoning": "AUTOMATIC HARD STOP-LOSS: Unrealized loss is 3.8% of equity, breaching the 3.0% hard stop.",
+      "realized_pnl": -3220.0,
+      "closed_thesis": {
+        "active": true,
+        "catalyst": "Houthi drone attacks on Saudi Arabia's key east-west pipeline and Shaybah oil field disrupting supply",
+        "invalidation_criteria": "Saudi Aramco confirms full pipeline restoration and no further attacks, and WTI closes below $95 within 5 trading days",
+        "monitoring_horizon": "Next 5-7 days: watch Saudi ministry updates, Aramco statements, and OPEC meeting outcomes",
+        "entered_at": "2026-10-23T08:39:23.298058+05:30",
+        "price_at_entry": 99.92,
+        "last_updated": "2026-10-26T02:38:41.327542+05:30",
+        "notes": [
+          {
+            "timestamp": "2026-10-23T08:39:23.298071+05:30",
+            "action": "open_long",
+            "price": 99.92,
+            "note": "Thesis initiated \u2013 supply disruption risk active, price still climbing."
+          },
+          {
+            "timestamp": "2026-10-23T11:40:41.754934+05:30",
+            "action": "hold",
+            "price": 100.78,
+            "note": "Thesis still intact: pipeline partially restored (\u224880% capacity), no full restoration confirmation, price above $95, no new attacks. Monitoring continues."
+          },
+          {
+            "timestamp": "2026-10-23T14:39:06.131755+05:30",
+            "action": "hold",
+            "price": 100.26,
+            "note": "Thesis still intact: pipeline at ~80% capacity, no full restoration confirmation, price above $95, no new attacks. Monitoring continues."
+          },
+          {
+            "timestamp": "2026-10-23T17:46:00.089951+05:30",
+            "action": "hold",
+            "price": 101.08,
+            "note": "Thesis remains fully intact: supply disruption risks continue with no confirmation of full pipeline restoration, WTI trades firmly above the $95 invalidation threshold at ~$100.97, and regional security tensions remain heightened. Monitoring Aramco statements and upcoming OPEC developments."
+          },
+          {
+            "timestamp": "2026-10-23T20:40:35.683125+05:30",
+            "action": "hold",
+            "price": 102.32,
+            "note": "Thesis still intact: supply disruption persists, price above $95, no full restoration confirmation. Continue monitoring Saudi Aramco updates and OPEC decisions over next 5-7 days."
+          },
+          {
+            "timestamp": "2026-10-24T05:38:09.284698+05:30",
+            "action": "hold",
+            "price": 103.44,
+            "note": "Thesis still intact: pipeline not fully restored, price above $95, no new attacks; continue monitoring Saudi ministry updates and OPEC outcomes over next 5-7 days."
+          },
+          {
+            "timestamp": "2026-10-24T14:38:37.056263+05:30",
+            "action": "hold",
+            "price": 103.27,
+            "note": "Thesis still intact; pipeline operating at ~5.8\u202fM bpd (~55% of full capacity), no full restoration confirmation, price > $95, no new attacks. Continue monitoring Saudi ministry updates, Aramco statements, and upcoming OPEC decisions over the next 5\u20117 days."
+          },
+          {
+            "timestamp": "2026-10-24T17:37:34.074798+05:30",
+            "action": "hold",
+            "price": 103.27,
+            "note": "Thesis remains intact: East-West pipeline remains partially disrupted with no confirmation of full restoration, regional infrastructure threats persist, and WTI is trading strongly at $103.27 (well above the $95 invalidation price threshold). Continuing to hold the long position while monitoring Saudi official statements and OPEC developments."
+          },
+          {
+            "timestamp": "2026-10-24T20:47:08.872751+05:30",
+            "action": "hold",
+            "price": 103.27,
+            "note": "Thesis remains intact. Invalidation criteria unmet: Aramco has not confirmed full pipeline restoration, and WTI trades at $103.27 (substantially above the $95 threshold). Ongoing monitoring of Saudi ministry/Aramco statements and OPEC developments continues over the 5-7 day horizon."
+          },
+          {
+            "timestamp": "2026-10-24T23:38:24.923556+05:30",
+            "action": "add",
+            "price": 103.27,
+            "note": "Thesis still intact: pipeline operating at ~55% capacity, no full restoration, price > $95, no new attacks. Monitoring continues."
+          },
+          {
+            "timestamp": "2026-10-25T23:38:41.976965+05:30",
+            "action": "hold",
+            "price": 103.27,
+            "note": "Thesis still intact: pipeline not fully restored, price > $95, no full restoration statement from Aramco, and no resolution of attacks. Continue monitoring."
+          },
+          {
+            "timestamp": "2026-10-26T02:38:41.327533+05:30",
+            "action": "add",
+            "price": 103.27,
+            "note": "Thesis still intact: pipeline operating at ~55% capacity, no full restoration, price above $95, no new attacks. Continue monitoring."
+          }
+        ]
+      }
     }
   ],
-  "last_trade_at": "2026-10-26T02:38:41.325375+05:30",
+  "last_trade_at": "2026-10-26T08:31:49.299545+05:30",
   "day_start_date": "2026-10-26",
   "day_start_equity": 92170.00000000006
 }
