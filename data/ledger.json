@@ -1915,6 +1915,14 @@
       "price": 101.07,
       "confidence": null,
       "reasoning": "Current Brent price is modestly higher (~$101) with no sharp breakout despite recent reports of drone strikes on Saudi oil infrastructure. While supply disruption risk exists, the price impact appears limited so far and the news lacks confirmed production cuts. Confidence in an upside move does not meet the 0.65 threshold; therefore, staying flat preserves capital."
+    },
+    {
+      "timestamp": "2026-10-28T11:36:27.394712+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 101.45,
+      "confidence": null,
+      "reasoning": "Recent news reports a claimed Houthi missile strike on Saudi Arabia's largest refinery, pushing Brent above $115 and WTI to ~101.5. However, Saudi authorities have not confirmed the attack, and price action in the past 15\u202fmin shows only a modest uptick (101.33 \u2192 101.56). The catalyst remains speculative and appears already largely priced in, giving confidence below the 0.65 threshold. Therefore, staying flat preserves capital."
     }
   ],
   "last_trade_at": "2026-10-26T08:31:49.299545+05:30",
