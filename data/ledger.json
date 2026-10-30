@@ -1,10 +1,10 @@
 {
-  "cash": 58400.00000000009,
-  "position_contracts": 4,
-  "avg_entry_price": 103.9575,
-  "avg_confidence": 0.7,
-  "margin_held": 27200.0,
-  "realized_pnl": -14399.99999999992,
+  "cash": 81090.00000000009,
+  "position_contracts": 0,
+  "avg_entry_price": 0.0,
+  "avg_confidence": 0.0,
+  "margin_held": 0.0,
+  "realized_pnl": -18909.999999999913,
   "trades": [
     {
       "timestamp": "2026-09-12T14:50:56.021177+05:30",
@@ -2087,9 +2087,65 @@
         "risk_per_contract": 6387.9,
         "capped_by_max_position": false
       }
+    },
+    {
+      "timestamp": "2026-10-31T02:31:27.441756+05:30",
+      "action": "close",
+      "quantity": 4,
+      "price": 102.83,
+      "confidence": null,
+      "reasoning": "AUTOMATIC HARD STOP-LOSS: Unrealized loss is 5.6% of equity, breaching the 3.0% hard stop.",
+      "realized_pnl": -4510.0,
+      "closed_thesis": {
+        "active": true,
+        "catalyst": "Continued Houthi attacks on Saudi infrastructure keeping supply concerns high",
+        "invalidation_criteria": "OPEC announces increased Saudi output or Brent closes below $100 for two consecutive days",
+        "monitoring_horizon": "Early November OPEC+ meeting (already held, output steady) and any further Houthi attacks through early November",
+        "entered_at": "2026-10-30T08:38:12.699068+05:30",
+        "price_at_entry": 103.43,
+        "last_updated": "2026-10-30T23:40:50.611982+05:30",
+        "notes": [
+          {
+            "timestamp": "2026-10-30T08:38:12.699079+05:30",
+            "action": "open_long",
+            "price": 103.43,
+            "note": "Thesis remains intact: price still below recent spike; monitoring OPEC+ decisions and attack developments."
+          },
+          {
+            "timestamp": "2026-10-30T11:35:54.543613+05:30",
+            "action": "hold",
+            "price": 103.35,
+            "note": "Thesis remains intact: no OPEC output increase, Brent above $100, attacks ongoing, price near entry."
+          },
+          {
+            "timestamp": "2026-10-30T14:37:57.191032+05:30",
+            "action": "hold",
+            "price": 103.68,
+            "note": "Thesis intact and reinforced. Invalidation criteria unmet (Brent at $116.56 > $100; no OPEC+ output hike signaled). Monitoring horizon intact with ongoing Houthi targeting of Saudi energy assets and OPEC+ meeting scheduled for early November. Holding position."
+          },
+          {
+            "timestamp": "2026-10-30T17:56:00.365882+05:30",
+            "action": "add",
+            "price": 104.08,
+            "note": "Thesis still intact and reinforced: attacks intensify, price up, OPEC+ meeting pending, no output increase sign."
+          },
+          {
+            "timestamp": "2026-10-30T20:43:43.496565+05:30",
+            "action": "add",
+            "price": 104.07,
+            "note": "Thesis remains intact and appears reinforced: attacks ongoing, OPEC+ holding output steady, price up modestly; no sign of output increase or sustained sub-$100 Brent."
+          },
+          {
+            "timestamp": "2026-10-30T23:40:50.611977+05:30",
+            "action": "add",
+            "price": 104.25,
+            "note": "Thesis still intact and reinforced: OPEC+ held output steady, attacks ongoing, price above $100; no invalidation criteria met."
+          }
+        ]
+      }
     }
   ],
-  "last_trade_at": "2026-10-30T23:40:50.610472+05:30",
-  "day_start_date": "2026-10-30",
-  "day_start_equity": 85600.00000000009
+  "last_trade_at": "2026-10-31T02:31:27.441752+05:30",
+  "day_start_date": "2026-10-31",
+  "day_start_equity": 81090.0000000001
 }
