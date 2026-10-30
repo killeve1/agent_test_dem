@@ -1,11 +1,11 @@
 {
   "active": true,
-  "catalyst": "Houthi attack on major Saudi Arabian refinery disrupting crude output",
+  "catalyst": "Continued Houthi attacks on Saudi infrastructure keeping supply concerns high",
   "invalidation_criteria": "OPEC announces increased Saudi output or Brent closes below $100 for two consecutive days",
-  "monitoring_horizon": "Upcoming OPEC+ meeting (first week of November) and any further Houthi attacks reported through early November",
+  "monitoring_horizon": "Early November OPEC+ meeting (already held, output steady) and any further Houthi attacks through early November",
   "entered_at": "2026-10-30T08:38:12.699068+05:30",
   "price_at_entry": 103.43,
-  "last_updated": "2026-10-30T20:43:43.496573+05:30",
+  "last_updated": "2026-10-30T23:40:50.611982+05:30",
   "notes": [
     {
       "timestamp": "2026-10-30T08:38:12.699079+05:30",
@@ -36,6 +36,12 @@
       "action": "add",
       "price": 104.07,
       "note": "Thesis remains intact and appears reinforced: attacks ongoing, OPEC+ holding output steady, price up modestly; no sign of output increase or sustained sub-$100 Brent."
+    },
+    {
+      "timestamp": "2026-10-30T23:40:50.611977+05:30",
+      "action": "add",
+      "price": 104.25,
+      "note": "Thesis still intact and reinforced: OPEC+ held output steady, attacks ongoing, price above $100; no invalidation criteria met."
     }
   ]
 }
