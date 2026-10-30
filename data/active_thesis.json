@@ -5,7 +5,7 @@
   "monitoring_horizon": "Upcoming OPEC+ meeting (first week of November) and any further Houthi attacks reported through early November",
   "entered_at": "2026-10-30T08:38:12.699068+05:30",
   "price_at_entry": 103.43,
-  "last_updated": "2026-10-30T17:56:00.365888+05:30",
+  "last_updated": "2026-10-30T20:43:43.496573+05:30",
   "notes": [
     {
       "timestamp": "2026-10-30T08:38:12.699079+05:30",
@@ -30,6 +30,12 @@
       "action": "add",
       "price": 104.08,
       "note": "Thesis still intact and reinforced: attacks intensify, price up, OPEC+ meeting pending, no output increase sign."
+    },
+    {
+      "timestamp": "2026-10-30T20:43:43.496565+05:30",
+      "action": "add",
+      "price": 104.07,
+      "note": "Thesis remains intact and appears reinforced: attacks ongoing, OPEC+ holding output steady, price up modestly; no sign of output increase or sustained sub-$100 Brent."
     }
   ]
 }
