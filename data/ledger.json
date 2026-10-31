@@ -1,9 +1,9 @@
 {
-  "cash": 81090.00000000009,
-  "position_contracts": 0,
-  "avg_entry_price": 0.0,
-  "avg_confidence": 0.0,
-  "margin_held": 0.0,
+  "cash": 74290.00000000009,
+  "position_contracts": 1,
+  "avg_entry_price": 102.95,
+  "avg_confidence": 0.7,
+  "margin_held": 6800.0,
   "realized_pnl": -18909.999999999913,
   "trades": [
     {
@@ -2143,9 +2143,24 @@
           }
         ]
       }
+    },
+    {
+      "timestamp": "2026-10-31T05:41:36.478684+05:30",
+      "action": "open_long",
+      "quantity": 1,
+      "price": 102.95,
+      "confidence": 0.7,
+      "reasoning": "Price has risen ~5% over the past five days to a recent high of $104.99, reflecting market pricing of supply risk from Houthi attacks. Current price at $102.95 suggests upside remains if disruptions persist. No major counter\u2011catalysts identified.",
+      "sizing_detail": {
+        "quantity": 1,
+        "risk_dollars": 6811.56,
+        "stop_distance": 6.3879,
+        "risk_per_contract": 6387.9,
+        "capped_by_max_position": false
+      }
     }
   ],
-  "last_trade_at": "2026-10-31T02:31:27.441752+05:30",
+  "last_trade_at": "2026-10-31T05:41:36.478678+05:30",
   "day_start_date": "2026-10-31",
   "day_start_equity": 81090.0000000001
 }
