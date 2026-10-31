@@ -5,7 +5,7 @@
   "monitoring_horizon": "Next 7\u201110 days \u2013 watch Saudi Aramco production reports, OPEC+ statements, and any further Houthi attack news",
   "entered_at": "2026-10-31T05:41:36.481267+05:30",
   "price_at_entry": 102.95,
-  "last_updated": "2026-10-31T14:55:31.909218+05:30",
+  "last_updated": "2026-10-31T17:48:19.852558+05:30",
   "notes": [
     {
       "timestamp": "2026-10-31T05:41:36.481309+05:30",
@@ -24,6 +24,12 @@
       "action": "hold",
       "price": 104.12,
       "note": "Thesis Intact: CL=F at $104.12 is comfortably above the $95 invalidation level. Invalidation criteria (3 consecutive days of confirmed normal flows/no production impact or CL=F < $95 for 2 days) have not been met. Escalation toward Ras Tanura keeps geopolitical supply risk elevated across our 7-10 day monitoring horizon. Maintaining long position."
+    },
+    {
+      "timestamp": "2026-10-31T17:48:19.852549+05:30",
+      "action": "hold",
+      "price": 104.12,
+      "note": "Thesis Intact: Invalidation criteria have not been met (CL=F at $104.12 remains well above the $95 boundary; Saudi authorities have not confirmed full operational normalization, and attacks have expanded to Ras Tanura refinery assets). Monitoring horizon remains active as regional flow risks persist. Maintaining existing 1-contract long position."
     }
   ]
 }
