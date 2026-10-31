@@ -5,13 +5,19 @@
   "monitoring_horizon": "Next 7\u201110 days \u2013 watch Saudi Aramco production reports, OPEC+ statements, and any further Houthi attack news",
   "entered_at": "2026-10-31T05:41:36.481267+05:30",
   "price_at_entry": 102.95,
-  "last_updated": "2026-10-31T05:41:36.481267+05:30",
+  "last_updated": "2026-10-31T08:35:40.128256+05:30",
   "notes": [
     {
       "timestamp": "2026-10-31T05:41:36.481309+05:30",
       "action": "open_long",
       "price": 102.95,
       "note": "Initial thesis recorded; will re\u2011validate each cycle against production updates and price action."
+    },
+    {
+      "timestamp": "2026-10-31T08:35:40.128246+05:30",
+      "action": "hold",
+      "price": 102.95,
+      "note": "Thesis still intact; no production confirmation, price above $95, monitoring continues."
     }
   ]
 }
