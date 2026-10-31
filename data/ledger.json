@@ -2166,6 +2166,14 @@
       "price": 102.95,
       "confidence": null,
       "reasoning": "Thesis remains intact: no official confirmation of unchanged production, and price stays above $95 (current 102.95). Invalidation criteria not met. Market has modestly priced in risk (high 104.98, now near entry). Confidence in adding is below threshold, so we hold."
+    },
+    {
+      "timestamp": "2026-10-31T14:55:31.906927+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 104.12,
+      "confidence": 0.7,
+      "reasoning": "The active long thesis remains intact. Crude futures (CL=F) are trading at $104.12, well above our $95 invalidation threshold and showing positive unrealized P&L (+1.14% from $102.95 entry). Escalating Houthi strikes targeting key Saudi infrastructure (including the recent Ras Tanura fire and East-West pipeline claims) continue to sustain the supply risk premium. While Shaybah field processing remains operational and physical outages have not been confirmed, the threat environment is persistent and no invalidation conditions have been triggered. Capital preservation dictates holding our current 1-contract position rather than aggressively adding without verified physical barrel disruption."
     }
   ],
   "last_trade_at": "2026-10-31T05:41:36.478678+05:30",
