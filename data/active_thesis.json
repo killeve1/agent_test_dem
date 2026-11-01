@@ -5,7 +5,7 @@
   "monitoring_horizon": "Next 7\u201110 days \u2013 watch Saudi Aramco production reports, OPEC+ statements, and any further Houthi attack news",
   "entered_at": "2026-10-31T05:41:36.481267+05:30",
   "price_at_entry": 102.95,
-  "last_updated": "2026-11-01T02:39:46.139624+05:30",
+  "last_updated": "2026-11-01T05:38:51.700424+05:30",
   "notes": [
     {
       "timestamp": "2026-10-31T05:41:36.481309+05:30",
@@ -54,6 +54,12 @@
       "action": "add",
       "price": 104.12,
       "note": "Thesis still intact and strengthened: ongoing Houthi attacks (Ras Tanura) without Saudi confirmation of normal flows; price remains above $95. Maintaining long position with added exposure."
+    },
+    {
+      "timestamp": "2026-11-01T05:38:51.700415+05:30",
+      "action": "hold",
+      "price": 104.12,
+      "note": "Thesis still intact; price above $95, no three\u2011day flow confirmation, recent export pivot noted but risk persists."
     }
   ]
 }
