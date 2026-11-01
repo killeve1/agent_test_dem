@@ -1,11 +1,11 @@
 {
   "active": true,
-  "catalyst": "Recent Houthi drone/missile attacks on Saudi Aramco facilities (e.g., Shaybah field) increasing risk of supply disruption in the world's largest oil exporter",
+  "catalyst": "Continued Houthi drone/missile attacks on Saudi Aramco facilities (Ras Tanura, Shaybah, Dhahran) sustaining supply disruption risk",
   "invalidation_criteria": "Saudi authorities confirm no production impact and oil flows remain at pre\u2011attack levels for three consecutive days, or CL=F closes below $95 and stays there for 2 days",
   "monitoring_horizon": "Next 7\u201110 days \u2013 watch Saudi Aramco production reports, OPEC+ statements, and any further Houthi attack news",
   "entered_at": "2026-10-31T05:41:36.481267+05:30",
   "price_at_entry": 102.95,
-  "last_updated": "2026-11-01T08:31:41.428788+05:30",
+  "last_updated": "2026-11-01T11:40:51.948384+05:30",
   "notes": [
     {
       "timestamp": "2026-10-31T05:41:36.481309+05:30",
@@ -66,6 +66,12 @@
       "action": "hold",
       "price": 104.12,
       "note": "Thesis still intact: no confirmation of normal flows, price above $95, risk of further attacks remains. No invalidation criteria met."
+    },
+    {
+      "timestamp": "2026-11-01T11:40:51.948378+05:30",
+      "action": "add",
+      "price": 104.12,
+      "note": "Thesis still intact and strengthened: ongoing Houthi attacks, price remains elevated, no confirmation of normal flows; invalidation criteria not met."
     }
   ]
 }
