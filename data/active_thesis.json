@@ -5,7 +5,7 @@
   "monitoring_horizon": "Next 7\u201110 days \u2013 watch Saudi Aramco production reports, OPEC+ statements, and any further Houthi attack news",
   "entered_at": "2026-10-31T05:41:36.481267+05:30",
   "price_at_entry": 102.95,
-  "last_updated": "2026-11-01T17:36:18.120637+05:30",
+  "last_updated": "2026-11-01T20:40:27.840982+05:30",
   "notes": [
     {
       "timestamp": "2026-10-31T05:41:36.481309+05:30",
@@ -84,6 +84,12 @@
       "action": "hold",
       "price": 104.12,
       "note": "Thesis Intact: Invalidation criteria remain unmet as CL=F holds firm at $104.12 (well above the $95 boundary) and Saudi authorities have not confirmed operational normalization or 3-day sustained pre-attack export levels. Regional supply threat continues over the 7-10 day horizon. Position is maxed at 5 contracts; maintaining long position."
+    },
+    {
+      "timestamp": "2026-11-01T20:40:27.840972+05:30",
+      "action": "hold",
+      "price": 104.12,
+      "note": "Thesis Intact: Invalidation criteria remain unmet (CL=F at $104.12 is well above $95; no 3-day flow normalization confirmation). Disruption risk remains elevated across the monitoring horizon. With position size maxed at 5 contracts, continuing to hold long exposure."
     }
   ]
 }
