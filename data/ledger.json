@@ -3046,6 +3046,14 @@
       "price": 86.26,
       "confidence": null,
       "reasoning": "Current price has fallen from a recent intraday high of $88.74 to $86.23, indicating the market may have already priced in recent supply\u2011disruption concerns. While news of a fresh attack on Saudi Arabia's East\u2011West pipeline (Nov 10) keeps a supply risk on the table, other reports suggest the market is moving back toward surplus. Confidence in a directional move is below the 0.65 threshold, so staying flat preserves capital."
+    },
+    {
+      "timestamp": "2026-11-12T08:52:14.419585+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 85.64,
+      "confidence": null,
+      "reasoning": "Recent news reports indicate ongoing attacks on oil tankers in the Strait of Hormuz (Nov 8-11), which historically can tighten supply and lift prices. However, CL=F price spiked earlier today to $88.74 and has since retreated to $85.65, down ~1% for the day, suggesting the market has already priced in the immediate risk and the rally is fading. No concrete evidence of a sustained disruption or new OPEC+ policy change. Confidence in a profitable entry is below the required 0.65, so maintaining cash is prudent."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
