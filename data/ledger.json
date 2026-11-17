@@ -3326,6 +3326,14 @@
       "price": 84.94,
       "confidence": null,
       "reasoning": "Current CL=F price is $85, well below the $95 spike triggered by Houthi attacks on Saudi facilities earlier this week. The spike appears to have been priced and reversed, with price now near the day low. No new supply disruption news; recent headlines focus on political statements rather than fresh physical constraints. Without a clear, high-conviction catalyst and given our mandate for capital preservation, confidence to go long is below the 0.65 threshold. Hence we stay flat."
+    },
+    {
+      "timestamp": "2026-11-17T15:00:42.902753+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 85.74,
+      "confidence": null,
+      "reasoning": "Current CL=F price is flat around $85.7 with minimal 5\u2011day change (+0.09%). Recent headlines report Houthi claims of attacks on the Saudi East\u2011West pipeline and other infrastructure, but no confirmed outage or measurable supply reduction. Without concrete evidence of a supply shock or price impact, confidence in a long entry is below the required 0.65 threshold. Holding cash preserves capital until a clearer catalyst emerges."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
