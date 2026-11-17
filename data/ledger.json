@@ -3334,6 +3334,14 @@
       "price": 85.74,
       "confidence": null,
       "reasoning": "Current CL=F price is flat around $85.7 with minimal 5\u2011day change (+0.09%). Recent headlines report Houthi claims of attacks on the Saudi East\u2011West pipeline and other infrastructure, but no confirmed outage or measurable supply reduction. Without concrete evidence of a supply shock or price impact, confidence in a long entry is below the required 0.65 threshold. Holding cash preserves capital until a clearer catalyst emerges."
+    },
+    {
+      "timestamp": "2026-11-17T17:34:29.699982+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 86.2,
+      "confidence": null,
+      "reasoning": "Recent news shows a surge in tanker attacks in the Strait of Hormuz (Nov 16-17), a potential supply disruption. However, WTI prices have actually fallen from ~$88.7 to $85.7 on Nov 16 and only modestly recovered to $86.2 on Nov 17, suggesting the market may have already priced in the risk or expects rapid resolution. Confidence in a further upside is below the required 0.65 threshold, so to preserve capital we stay flat."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
