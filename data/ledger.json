@@ -3342,6 +3342,14 @@
       "price": 86.2,
       "confidence": null,
       "reasoning": "Recent news shows a surge in tanker attacks in the Strait of Hormuz (Nov 16-17), a potential supply disruption. However, WTI prices have actually fallen from ~$88.7 to $85.7 on Nov 16 and only modestly recovered to $86.2 on Nov 17, suggesting the market may have already priced in the risk or expects rapid resolution. Confidence in a further upside is below the required 0.65 threshold, so to preserve capital we stay flat."
+    },
+    {
+      "timestamp": "2026-11-17T20:42:17.689569+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 86.97,
+      "confidence": null,
+      "reasoning": "Current WTI futures are trading around $86.9, up modestly today (+2.3%) but still below the 5\u2011day high of $89.6. Recent news highlights increased U.S. military focus on Iran\u2019s supply routes and heightened regional tension, yet no concrete supply disruption (e.g., pipeline damage, sanctions, OPEC output change) has materialised. OPEC+ has reaffirmed steady output targets, and price moves appear driven more by risk sentiment than a measurable supply shortfall. Given the ambiguity and lack of a clear catalyst that meets our asymmetric\u2011upside criteria, confidence in a profitable long entry is below the 0.65 threshold. Maintaining cash preserves capital while we await a more definitive supply\u2011demand shock."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
