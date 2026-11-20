@@ -3494,6 +3494,14 @@
       "price": 82.77,
       "confidence": 0,
       "reasoning": "Market is experiencing strong downward momentum with WTI falling over 20% in the past month to $82.80, driven by Persian Gulf crude export recovery, rising US inventories (+3.4M bbls), and broader expectations of an impending global supply surplus. While tanker bottlenecks outside Hormuz present potential long-term friction, actual physical export flows remain intact and headline fundamentals are decidedly bearish. Capital preservation dictates remaining flat in cash; no asymmetric upside catalyst justifies opening a long position."
+    },
+    {
+      "timestamp": "2026-11-20T08:36:13.849443+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 83.12,
+      "confidence": null,
+      "reasoning": "Current WTI price is $83.08, modestly up 0.94% today and well below the recent $92 peak triggered by tanker attacks in early November. Recent news shows lingering US\u2011Iran tensions and OPEC+ holding output steady, but no fresh supply\u2011disruption event has emerged. The prior price spike appears priced in and the market is stabilizing, so with no clear new catalyst the risk\u2011adjusted confidence is below the 0.65 threshold. Holding cash preserves capital."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
