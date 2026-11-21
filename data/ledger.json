@@ -3566,6 +3566,14 @@
       "price": 83.98,
       "confidence": null,
       "reasoning": "Market is modestly up (+0.94%) near daily high but recent news highlights rising inventories and weaker demand, already pricing in the Iran war supply shock. No imminent supply-tightening catalyst (OPEC decision, EIA report) is present, and confidence in a new long is below 0.65. Therefore we stay flat and monitor for clearer asymmetric upside."
+    },
+    {
+      "timestamp": "2026-11-21T21:20:52.036602+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 83.98,
+      "confidence": null,
+      "reasoning": "Current CL=F price is $83.41, up ~0.9% today and near the day's high of $84.07. Recent headlines cite fresh tanker disruptions in the Strait of Hormuz, which could tighten supply, but the market has already nudged higher and broader data show ample global inventories and a surplus outlook. With the price already reacting and no clear, unpriced upside, my confidence in a profitable entry is below the 0.65 threshold, so I stay flat to preserve capital."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
