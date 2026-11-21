@@ -3542,6 +3542,14 @@
       "price": 83.62,
       "confidence": 0.2,
       "reasoning": "Crude oil (WTI CL=F) is trading around $83.62, down ~18% over the past month amid forecasts of an impending global crude surplus and resilient Middle Eastern export flows offsetting geopolitical risks. With no acute physical supply disruption or high-conviction bullish catalyst present, opening a long position carries negative expected value. Capital preservation dictates maintaining a defensive flat cash stance."
+    },
+    {
+      "timestamp": "2026-11-21T08:50:37.892436+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 83.62,
+      "confidence": null,
+      "reasoning": "Market shows modest upward move (1.2% today) amid mixed supply news: reports of Middle East war risks but also OPEC+ output increase and analysts saying supplies are recovering. No clear, high-conviction disruption to justify a new long position; price may already reflect available information. Confidence insufficient (>0.65) to open, so maintain flat position."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
