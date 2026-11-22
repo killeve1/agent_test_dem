@@ -3622,6 +3622,14 @@
       "price": 83.41,
       "confidence": null,
       "reasoning": "No clear, high-conviction supply disruption currently priced in; recent headlines on Hormuz/Iran war are mixed and crude price has fallen 1.8% over 5 days to $83.41, indicating market may have already priced risks. Confidence in a profitable entry is below the 0.65 threshold, so staying flat preserves capital."
+    },
+    {
+      "timestamp": "2026-11-22T17:54:14.831025+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 83.41,
+      "confidence": null,
+      "reasoning": "Flat position; mixed news shows higher US inventories pulling price down while Strait of Hormuz attacks create upside risk, but current price $83.41 and no clear, confirmed disruption. Confidence insufficient to open a trade."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
