@@ -3598,6 +3598,14 @@
       "price": 83.98,
       "confidence": null,
       "reasoning": "Current WTI price is $83.41, up ~0.9% today with a high of $84.07. Recent news reports Houthi attacks on Riyadh and potential tanker disruptions, creating supply concerns. However, broader market sentiment points to ample global supplies and a supply surplus outlook, with price declines earlier in the week. The catalyst is not yet definitive, and price movement appears modest and possibly already priced in. Confidence in a sustained upside is below the 0.65 threshold, so the prudent action is to stay flat."
+    },
+    {
+      "timestamp": "2026-11-22T08:39:11.115828+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 83.98,
+      "confidence": null,
+      "reasoning": "Current headlines show mixed sentiment: inventory builds and IEA surplus forecast suggest ample supply, while geopolitical tensions (US-Iran) remain speculative without concrete disruption. No confirmed supply/demand shock meets high-conviction criteria, and price history indicates recent pullbacks. Confidence for a long entry is below 0.65, so maintaining cash aligns with capital preservation mandate."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
