@@ -3646,6 +3646,14 @@
       "price": 83.41,
       "confidence": null,
       "reasoning": "Recent headlines report major drone attacks on Russian refineries cutting output by up to 50%, a potential supply shock. However, WTI futures have fallen ~3% over the past 5 days to $83.41, and a separate report noted prices plummeting as supply concerns eased, suggesting the market may have already priced in the disruption. Confidence in a sustained upside is below the 0.65 threshold, so the prudent choice is to stay flat."
+    },
+    {
+      "timestamp": "2026-11-23T05:37:07.345603+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 82.84,
+      "confidence": null,
+      "reasoning": "Recent headlines report fresh Houthi attacks on Saudi Arabia's East-West pipeline, but official statements indicate operations remain unaffected. Crude futures have slipped 2.4% over the past three days, suggesting the market has already priced in supply concerns. No decisive OPEC+ policy change or confirmed disruption to oil flow is evident. Confidence in a new long entry is below the 0.65 threshold, so the prudent action is to stay flat."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
