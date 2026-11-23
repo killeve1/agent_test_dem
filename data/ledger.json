@@ -3694,6 +3694,14 @@
       "price": 81.91,
       "confidence": null,
       "reasoning": "Flat position. Recent headlines show ongoing Houthi attacks and geopolitical tension, but price has fallen 2% today to $81.9, suggesting market has already priced in much of the supply risk. No new catalyst or official update indicates imminent further disruption. Confidence in a directional move is below 0.65, so hold cash to preserve capital."
+    },
+    {
+      "timestamp": "2026-11-23T23:33:15.717673+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 81.14,
+      "confidence": null,
+      "reasoning": "Current WTI price has fallen ~3% today to $81.12, indicating the market is already pricing in returning supply. The only notable news are cyberattack attempts on the Corpus Christi export hub and speculative geopolitical talk about Iran, neither of which have materialized into confirmed supply disruptions. No concrete catalyst with a clear timeline is present, so taking a long position would be premature and risk capital preservation."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
