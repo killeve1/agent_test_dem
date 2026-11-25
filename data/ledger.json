@@ -1,9 +1,9 @@
 {
-  "cash": 53110.00000000006,
-  "position_contracts": 3,
-  "avg_entry_price": 82.78,
-  "avg_confidence": 0.7133333333333333,
-  "margin_held": 20400.0,
+  "cash": 46310.00000000006,
+  "position_contracts": 4,
+  "avg_entry_price": 83.1075,
+  "avg_confidence": 0.73,
+  "margin_held": 27200.0,
   "realized_pnl": -26489.999999999938,
   "trades": [
     {
@@ -3843,9 +3843,24 @@
         "risk_per_contract": 5231.85,
         "capped_by_max_position": false
       }
+    },
+    {
+      "timestamp": "2026-11-26T02:44:05.270564+05:30",
+      "action": "add",
+      "quantity": 1,
+      "price": 84.09,
+      "confidence": 0.78,
+      "reasoning": "Recent news (Nov 24\u201321) confirms multiple tanker attacks in the Strait of Hormuz with no sign of de\u2011escalation. OPEC+ has kept production targets unchanged. Crude futures have risen to $84.1, ~4% above entry and well above the $78 invalidation level, indicating the supply\u2011disruption thesis remains intact and price action reflects continued risk premium. Confidence high enough to add.",
+      "sizing_detail": {
+        "quantity": 1,
+        "risk_dollars": 7248.38,
+        "stop_distance": 5.2704,
+        "risk_per_contract": 5270.4,
+        "capped_by_max_position": false
+      }
     }
   ],
-  "last_trade_at": "2026-11-25T23:34:16.449203+05:30",
-  "day_start_date": "2026-11-25",
-  "day_start_equity": 73510.00000000006
+  "last_trade_at": "2026-11-26T02:44:05.270557+05:30",
+  "day_start_date": "2026-11-26",
+  "day_start_equity": 77470.00000000004
 }
