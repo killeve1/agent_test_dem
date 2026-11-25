@@ -5,13 +5,19 @@
   "monitoring_horizon": "Next 7 days \u2013 monitor further Hormuz incidents, official statements from Iran and OPEC+, and daily price reaction",
   "entered_at": "2026-11-25T17:33:49.377008+05:30",
   "price_at_entry": 81.49,
-  "last_updated": "2026-11-25T17:33:49.377008+05:30",
+  "last_updated": "2026-11-25T20:33:11.646556+05:30",
   "notes": [
     {
       "timestamp": "2026-11-25T17:33:49.377019+05:30",
       "action": "open_long",
       "price": 81.49,
       "note": "Thesis intact: attacks continue, no offsetting supply response yet."
+    },
+    {
+      "timestamp": "2026-11-25T20:33:11.646549+05:30",
+      "action": "add",
+      "price": 83.19,
+      "note": "Thesis intact and strengthened: attacks continue at highest levels, OPEC+ unchanged, price above $78 and trending up."
     }
   ]
 }
