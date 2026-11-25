@@ -3774,6 +3774,14 @@
       "price": 81.64,
       "confidence": null,
       "reasoning": "Market remains under supply pressure from the ongoing Iran war and unchanged OPEC+ output, but WTI prices have already risen 2.7% today to $81.65 and are trending lower from the recent high of $82.13. No new catalyst has emerged; the existing disruption is already largely priced in. Confidence in an immediate upside is below the 0.65 threshold, so we stay flat to preserve capital."
+    },
+    {
+      "timestamp": "2026-11-25T08:37:42.605446+05:30",
+      "action": "hold",
+      "quantity": 0,
+      "price": 80.71,
+      "confidence": null,
+      "reasoning": "Current WTI at $80.73, down ~1% today and ~20% YTD, with recent price decline and no clear supply\u2011demand disruption driving upside. News shows a mixed picture: Libya pipeline restart adds supply, while Houthi attacks and regional tensions persist but have not halted flows. OPEC+ kept output targets steady, indicating no imminent production cuts. Given the lack of a high\u2011conviction catalyst and low confidence (<0.65) in a long, the prudent choice is to remain flat."
     }
   ],
   "last_trade_at": "2026-11-02T05:30:32.436623+05:30",
