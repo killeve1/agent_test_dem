@@ -1,9 +1,9 @@
 {
-  "cash": 46310.00000000006,
-  "position_contracts": 4,
-  "avg_entry_price": 83.1075,
-  "avg_confidence": 0.73,
-  "margin_held": 27200.0,
+  "cash": 39510.00000000006,
+  "position_contracts": 5,
+  "avg_entry_price": 83.286,
+  "avg_confidence": 0.728,
+  "margin_held": 34000.0,
   "realized_pnl": -26489.999999999938,
   "trades": [
     {
@@ -3858,9 +3858,24 @@
         "risk_per_contract": 5270.4,
         "capped_by_max_position": false
       }
+    },
+    {
+      "timestamp": "2026-11-26T05:48:25.911952+05:30",
+      "action": "add",
+      "quantity": 1,
+      "price": 84.0,
+      "confidence": 0.72,
+      "reasoning": "Latest OilPrice.com analysis (Nov 25) reports 12 tanker attacks in the Strait of Hormuz in November, traffic down and attacks daily, confirming continued supply disruption. OPEC+ meetings on Nov 1 and earlier kept output unchanged, no increase announced. CL futures are at $83.99, up ~3.9% today and above the $78 invalidation threshold, with price trending higher (high $84.27). Thesis remains intact and appears strengthened, justifying an additional long exposure.",
+      "sizing_detail": {
+        "quantity": 1,
+        "risk_dollars": 6659.71,
+        "stop_distance": 5.0636,
+        "risk_per_contract": 5063.55,
+        "capped_by_max_position": false
+      }
     }
   ],
-  "last_trade_at": "2026-11-26T02:44:05.270557+05:30",
+  "last_trade_at": "2026-11-26T05:48:25.911947+05:30",
   "day_start_date": "2026-11-26",
   "day_start_equity": 77470.00000000004
 }
